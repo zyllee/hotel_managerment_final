@@ -21,13 +21,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <form action="addBook.jsp" method = "post" onsubmit = "return check(this)">
+    <form action="checkinServlet" method = "post" onsubmit = "return check(this)">
     	<ul>
-    		<li>图书名称:<input type = "text" name = "name"></li>
-    		<li>价&nbsp;&nbsp;&nbsp;&nbsp;格:<input type = "text" name = "price"></li>
-    		<li>数&nbsp;&nbsp;&nbsp;&nbsp;量:<input type = "text" name = "amount"></li>
-    		<li>作&nbsp;&nbsp;&nbsp;&nbsp;者:<input type = "text" name = "author"></li>
-    		<li><input type= "submit" value = "添 加"></li>
+    		
+    		<li>房间号：<input type = "text" name = "roomNumber"></li>
+    		<li>身份证号：<input type = "text" name = "customerIDCard"></li>
+    		<li>性别:男<input type = "radio" name = "customerGender" value = "男" checked>女<input type = "radio" name = "customerGender" value = "女"></li>
+    		<li>姓名：<input type = "text" name = "customerName" ></li>
+    		<li>备注：<input type = "text" name = "remarks" ></li>
+    		<li><input type = "submit" value = "提交"><input type = "reset" value = "重置">
     	</ul>
     </form>
   </body>

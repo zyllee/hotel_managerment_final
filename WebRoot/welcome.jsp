@@ -19,11 +19,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
+	
   </head>
   
   <body>
     欢迎你！<%=session.getAttribute("un")%>
-    <a href="insert.jsp">插入数据</a>
+    <a href="reserve.jsp">插入数据</a>
   </body>
 </html>

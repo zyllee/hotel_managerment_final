@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+
+	<form >
+    	<ul class="ul">
+    	    <li>入住时间:<input type = "date" name = "checkInTime"></li>
+    		<li>离开时间:<input type = "date" name = "checkOutTime"></li>
+    		<li>房间号：<input type = "text" name = "roomNumber"></li>
+    		<li>身份证号：<input type = "text" name = "customerIDCard"></li>
+    		<li>性别:男<input type = "radio" name = "customerGender" value = "男" checked>女<input type = "radio" name = "customerGender" value = "女"></li>
+    		<li>姓名：<input type = "text" name = "customerName" ></li>
+    		<li>备注：<input type = "text" name = "remarks" ></li>
+    		<li><input type = "button" value = "提交"><input type = "reset" value = "重置">
+    	</ul>
+    </form>
+
+
+
+
+	<script type="text/javascript">
+		
+		$(function(){
+    		var $submit = $("input[type=button]");
+    		console.log($submit);
+    		$submit.on('click',function(){
+    			var checkInTime = $("input[name=checkInTime]").val();
+    			var checkOutTime = $("input[name=checkOutTime]").val();
+
+    			console.log(checkInTime);
+    			console.log(checkOutTime);
+    			$.ajax({
+    				url: 'checkinServlet',
+    				type: 'post',
+    				dataType: 'json',
+    				data: {
+    					'checkInTime': checkInTime,
+						'checkOutTime': checkOutTime
+    				},
+    			})
+    			.done(function(data) {
+    				console.log(data);
+    			})
+
+    	});
+
+	</script>
+</body>
+</html>

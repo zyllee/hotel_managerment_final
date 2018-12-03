@@ -30,7 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<%
   		try{
   			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-  			String url = "jdbc:sqlserver://localhost:1433;Database=book";
+  			String url = "jdbc:sqlserver://localhost:1433;Database=hotel_managerment_final";
   			String username = "sa";
   			String password = "123";
   			Connection conn = DriverManager.getConnection(url,username,password);
@@ -52,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		}
   		
   	 %>  
-  	 <a href="insert.jsp">返回</a>
+  	 <a href="welcome.jsp">返回首页</a>
   </body>
   
 </html>
