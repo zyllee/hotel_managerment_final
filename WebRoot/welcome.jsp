@@ -24,6 +24,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     欢迎你！<%=session.getAttribute("un")%>
-    <a href="reserve.jsp">插入数据</a>
+    <a href="reserve.jsp">预订</a>
+    <a href="arrive.jsp">入住</a>
+    <a href="leave.jsp">退房</a>
   </body>
 </html>
