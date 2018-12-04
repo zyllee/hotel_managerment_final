@@ -27,12 +27,12 @@ public class checkinServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
-		//³õÊ¼»¯
+		//åˆå§‹åŒ–
 		String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 		String url = "jdbc:sqlserver://localhost:1433;Database=hotel_db";
 		String user = "sa";
 		String pwd = "123";
-		//´ÓÒ³Ãæ»ñÈ¡²ÎÊı
+		//ä»é¡µé¢è·å–å‚æ•°
 		String checkinTime = request.getParameter("checkInTime");
 		String checkOutTime = request.getParameter("checkOutTime");
 		String customerName = request.getParameter("customerName");
@@ -42,10 +42,10 @@ public class checkinServlet extends HttpServlet {
 		String roomNumber = request.getParameter("roomNumber");
 		String customerPhoneNumber = request.getParameter("customerPhoneNumber");
 		String price = request.getParameter("price");
-		String orderStatus = "Ô¤¶©ÖĞ";
-		//»ñÈ¡µ±Ç°Ê±¼ä
+		String orderStatus = "é¢„è®¢ä¸­";
+		//è·å–å½“å‰æ—¶é—´
 		Date now = new Date(); 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");//¿ÉÒÔ·½±ãµØĞŞ¸ÄÈÕÆÚ¸ñÊ½
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");//å¯ä»¥æ–¹ä¾¿åœ°ä¿®æ”¹æ—¥æœŸæ ¼å¼
 		String orderTime = dateFormat.format(now);
 		// System.out.print(orderTime);
 		Connection conn;
@@ -58,7 +58,7 @@ public class checkinServlet extends HttpServlet {
 				Statement st = conn.createStatement();
 				st.executeUpdate(sql_customer);
 				st.executeUpdate(sql_orders);
-				System.out.print("²åÈë³É¹¦£¡");
+				System.out.print("æ’å…¥æˆåŠŸï¼");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
