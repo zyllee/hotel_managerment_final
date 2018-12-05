@@ -27,5 +27,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a href="reserve.jsp">预订</a>
     <a href="arrive.jsp">入住</a>
     <a href="leave.jsp">退房</a>
+    <a href="timeExtension.jsp">续费</a>
   </body>
 </html>
