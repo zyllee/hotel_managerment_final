@@ -41,7 +41,7 @@ public class SearchByTime extends HttpServlet {
 		String DriverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 		String url = "jdbc:sqlserver://localhost:1433;Database=hotel_db";
 		String user = "sa";
-		String pwd = "123";
+		String pwd = "160510111xyj";
 		String checkinTime = request.getParameter("checkInTime");
 		String checkOutTime = request.getParameter("checkOutTime");
 //		try {

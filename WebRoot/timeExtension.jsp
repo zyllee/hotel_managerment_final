@@ -26,8 +26,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <h1>续费</h1>
     	续费房间号：<input type="text" name="roomNumber"><br>
     	续费天数：<input type="text" name="addDay"><br>
+        价格为：<h1>待渲染</h1>
     <input type="button" name="getPrice" value="确认">
  	<input type="button" name = "submitTimeExtension" value="提交">
+    <h1>显示渲染成功的信息</h1>
   </body>
   <script>
           $(function(){

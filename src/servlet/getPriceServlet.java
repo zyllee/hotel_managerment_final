@@ -38,7 +38,7 @@ public class getPriceServlet extends HttpServlet {
 		String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 		String url = "jdbc:sqlserver://localhost:1433;Database=hotel_db";
 		String user = "sa";
-		String pwd = "123";
+		String pwd = "160510111xyj";
 		//获取参数
 		String roomNumber = request.getParameter("roomNumber");
 		String addDay = request.getParameter("addDay");

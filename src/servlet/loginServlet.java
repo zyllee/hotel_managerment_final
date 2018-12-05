@@ -32,7 +32,7 @@ public class loginServlet extends HttpServlet {
 		String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 		String url = "jdbc:sqlserver://localhost:1433;Database=db";
 		String user = "sa";
-		String pwd = "123";
+		String pwd = "160510111xyj";
 		String username = request.getParameter("user");
 		String upwd = request.getParameter("pwd");
 		Connection conn;

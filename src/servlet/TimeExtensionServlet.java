@@ -36,7 +36,7 @@ public class TimeExtensionServlet extends HttpServlet {
 		String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 		String url = "jdbc:sqlserver://localhost:1433;Database=hotel_db";
 		String user = "sa";
-		String pwd = "123";
+		String pwd = "160510111xyj";
 		//´«²Î
 		String addMoney = request.getParameter("addMoney");
 		String orderNumber = request.getParameter("orderNumber");

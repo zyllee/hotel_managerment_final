@@ -27,7 +27,7 @@ public class arriveServlet extends HttpServlet {
 		String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 		String url = "jdbc:sqlserver://localhost:1433;Database=hotel_db";
 		String user = "sa";
-		String pwd = "123";
+		String pwd = "160510111xyj";
 		String customerIDCard = request.getParameter("customerIDCard");
 		String sql_leave = "update orders set orderStatus = 'ÒÑÈë×¡' where orders.customerIDCard = '"+customerIDCard+"'";
 		String sql_query = "select * from orders where customerIDCard = '"+customerIDCard+"'";
