@@ -36,10 +36,23 @@
 ### 价格渲染
 #### 回传的参数
 - [ ] addMoney(根据时间*房价得到的总价)
-
 ### 续住成功信息渲染
 #### 回传的参数
 - [ ] addMoney(根据时间*房价得到的总价)
 - [ ] orderNumber（订单号）
 - [ ] oldExpiryTime(以前的离开时间)
 - [ ] newExpiryTime(续住以后的离开时间)
+## 肖誉杰使用的文件
+1. - **css**
+	1. reset.css
+	2. style.css
+1. - **js**
+	1. app.js
+	2. login.js
+	3. particles.min.js
+1. - **img**
+	1. bg.jpg
+	2. name.jpg
+	3. password.jpg
+1. - **公用文件**
+	1. js/jquery.js

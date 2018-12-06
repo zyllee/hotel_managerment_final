@@ -35,6 +35,7 @@ public class loginServlet extends HttpServlet {
 		String pwd = "160510111xyj";
 		String username = request.getParameter("user");
 		String upwd = request.getParameter("pwd");
+		PrintWriter out = response.getWriter();
 		Connection conn;
 		try {
 			Class.forName(driverName);
@@ -48,13 +49,16 @@ public class loginServlet extends HttpServlet {
 				while(rs.next()){
 					mima = rs.getString("upwd").trim();
 				}
+				//密码验证成功
 				if(mima.equals(upwd)){
 					HttpSession session = request.getSession();
 					session.setAttribute("un", username);
-					request.getRequestDispatcher("welcome.jsp").forward(request, response);
+					out.println("true");
+					//request.getRequestDispatcher("welcome.jsp").forward(request, response);
 				}
 				else{
-					request.getRequestDispatcher("error.jsp").forward(request, response);
+					out.println("false");
+					//request.getRequestDispatcher("error.jsp").forward(request, response);
 				}
 			}catch(SQLException e){
 				e.printStackTrace();
