@@ -112,3 +112,16 @@ canvas{
 .login.active{-webkit-animation: login-small 0.8s ; animation: login-small 0.8s ;animation-fill-mode:forwards;-webkit-animation-fill-mode:forwards}
 .login-button{cursor: pointer;width: 250px;text-align: center;height: 40px;line-height: 40px;background-color: dodgerblue;border-radius: 5px;margin: 0 auto;margin-top: 50px;color: white;}
 
+.error {
+  width: 300px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -30%);
+  display: none;
+  color: dodgerblue;
+  font-size: 16px;
+}
