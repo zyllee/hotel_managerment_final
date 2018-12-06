@@ -49,7 +49,7 @@ public class loginServlet extends HttpServlet {
 				while(rs.next()){
 					mima = rs.getString("upwd").trim();
 				}
-				//
+
 				if(mima.equals(upwd)){
 					HttpSession session = request.getSession();
 					session.setAttribute("un", username);
@@ -58,7 +58,7 @@ public class loginServlet extends HttpServlet {
 				}
 				else{
 					out.println("false");
-					//request.getRequestDispatcher("error.jsp").forward(request, response);
+					//request.getRequestDispatcher("index.jsp").forward(request, response);
 				}
 			}catch(SQLException e){
 				e.printStackTrace();
