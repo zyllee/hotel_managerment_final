@@ -49,7 +49,7 @@ public class loginServlet extends HttpServlet {
 				while(rs.next()){
 					mima = rs.getString("upwd").trim();
 				}
-				//密码验证成功
+				//
 				if(mima.equals(upwd)){
 					HttpSession session = request.getSession();
 					session.setAttribute("un", username);

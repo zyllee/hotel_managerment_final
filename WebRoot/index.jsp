@@ -30,14 +30,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="login-center clearfix">
           <div class="login-center-img"><img src="img/name.png"/></div>
           <div class="login-center-input">
-            <input type="text" name="" value="" placeholder="请输入您的用户名" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的用户名'"/>
+            <input type="text" name="user" value="" placeholder="请输入您的用户名" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的用户名'"/>
             <div class="login-center-input-text">用户名</div>
           </div>
         </div>
         <div class="login-center clearfix">
           <div class="login-center-img"><img src="img/password.png"/></div>
           <div class="login-center-input">
-            <input type="password" name="" value="" placeholder="请输入您的密码" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的密码'"/>
+            <input type="password" name="pwd" value="" placeholder="请输入您的密码" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的密码'"/>
             <div class="login-center-input-text">密码</div>
           </div>
         </div>

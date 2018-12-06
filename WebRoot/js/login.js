@@ -24,8 +24,8 @@ $(function() {
       })
       .done(function(data) {
         if($.trim(data) == "false") {
-          console.log('test');
           console.log('失败');
+          window.location = "index.jsp";
           return;
         }
         console.log(data);
@@ -41,6 +41,7 @@ $(function() {
     removeClass(document.querySelector(".sk-rotating-plane"), "active");
     document.querySelector(".login").style.display = "block";
     console.log('成功');
+    window.location = "welcome.jsp";
   }
 
   function hasClass(elem, cls) {
