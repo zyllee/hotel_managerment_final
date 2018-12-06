@@ -10,8 +10,9 @@ $(function() {
   });
 
   function login() {
-    var $user = $("input[type=user]").val();
-    var $pwd = $("input[type=pwd]").val();
+    var $user = $("input[name=user]").val();
+    var $pwd = $("input[name=pwd]").val();
+    console.log($user + $pwd);
     $.ajax({
         url: 'loginServlet',
         type: 'post',
@@ -22,14 +23,12 @@ $(function() {
         }
       })
       .done(function(data) {
-<<<<<<< HEAD
         if($.trim(data) == "false") {
-          alert("登录失败!");
+          
+          console.log('失败');
           return;
         }
-=======
         console.log(data);
->>>>>>> xiaoyujie
         success();
       })
       .fail(function(e) {
@@ -41,12 +40,12 @@ $(function() {
     removeClass(document.querySelector(".login"), "active");
     removeClass(document.querySelector(".sk-rotating-plane"), "active");
     document.querySelector(".login").style.display = "block";
-    alert("登录成功");
+    console.log('成功');
   }
 
   function hasClass(elem, cls) {
     cls = cls || '';
-    if (cls.replace(/\s/g, '').length == 0) return false; //当cls没有参数时，返回false
+    if (cls.replace(/\s/g, '').length == 0) return false; 
     return new RegExp(' ' + cls + ' ').test(' ' + elem.className + ' ');
   }
 
