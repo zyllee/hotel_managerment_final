@@ -50,7 +50,7 @@ CREATE TABLE customers
 CREATE TABLE orders
 (
 	--订单号
-	orderNumber int NOT NULL  , 
+	orderNumber int identity(1,1) NOT NULL  , 
 	--订单状态
 	orderStatus CHAR(18) check (orderStatus = '预订中' or orderStatus = '已入住'or orderStatus = '已退房'),
 	--客户身份证
@@ -77,7 +77,7 @@ CREATE TABLE orders
 CREATE TABLE timeExtension    
 (
 	--操作记录号
-	operatingID int check(operatingID > 0) not null,
+	operatingID int identity(1,1) check(operatingID > 0) not null,
 	--操作的订单号(是记录中的订单号，外码，参照订单表)
 	orderNumber int not null,
 	--住房原到期日期
