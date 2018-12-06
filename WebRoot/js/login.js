@@ -22,10 +22,14 @@ $(function() {
         }
       })
       .done(function(data) {
+<<<<<<< HEAD
         if($.trim(data) == "false") {
           alert("登录失败!");
           return;
         }
+=======
+        console.log(data);
+>>>>>>> xiaoyujie
         success();
       })
       .fail(function(e) {
