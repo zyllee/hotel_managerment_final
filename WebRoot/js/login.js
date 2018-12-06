@@ -24,6 +24,7 @@ $(function() {
       })
       .done(function(data) {
         if($.trim(data) == "false") {
+          console.log('ts2');
           console.log('test');
           console.log('失败');
           return;
