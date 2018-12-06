@@ -26,7 +26,6 @@ CREATE TABLE room
 (
 	roomNumber CHAR(6),
 	roomType VARCHAR(32) NOT NULL,
-	roomStatus CHAR(6) check (roomStatus='空' or roomStatus='非空'),
 	remarks VARCHAR(32),
 	PRIMARY KEY (roomNumber),
 	FOREIGN KEY (roomType) REFERENCES roomTypeAndPrice(roomType)
@@ -64,8 +63,7 @@ CREATE TABLE orders
 	checkOutTime DATE NOT NULL,
 	--需付金额(由于可能续费，不能作为外键)
 	totalMoney INT check(totalMoney > 0) NOT NULL,
-	--备注
-	remarks VARCHAR(32),
+	--预订时间
 	orderTime DATE NOT NULL,
 	--主键
 	PRIMARY KEY (orderNumber),

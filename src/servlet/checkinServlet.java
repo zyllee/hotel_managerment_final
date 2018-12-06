@@ -49,7 +49,7 @@ public class checkinServlet extends HttpServlet {
 		String orderTime = dateFormat.format(now);
 		// System.out.print(orderTime);
 		Connection conn;
-		String sql_customer = "insert customers values('"+customerIDCard+"','"+customerGender+"','"+customerName+"','"+customerPhoneNumber+"',"+price+",'"+remarks+"')";
+		String sql_customer = "insert customers values('"+customerIDCard+"','"+customerGender+"','"+customerName+"','"+customerPhoneNumber+"',"+price+")";
 		String sql_orders = "insert orders values('"+orderStatus+"','"+customerIDCard+"','"+roomNumber+"','"+checkinTime+"','"+checkOutTime+"',"+price+",'"+orderTime+"')";
 		try {
 			Class.forName(driverName);
