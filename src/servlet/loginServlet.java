@@ -35,7 +35,6 @@ public class loginServlet extends HttpServlet {
 		String pwd = "160510111xyj";
 		String username = request.getParameter("user");
 		String upwd = request.getParameter("pwd");
-		System.out.println(username + upwd);
 		PrintWriter out = response.getWriter();
 		Connection conn;
 		try {
