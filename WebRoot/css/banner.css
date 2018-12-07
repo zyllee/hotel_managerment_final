@@ -1,0 +1,174 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+#banner {
+	width: 100%;
+	height: 40px;
+	background: black;
+	font-size: 16px;
+	position: relative;
+	cursor: pointer;
+	color: rgba(255, 255, 255, .8);
+	line-height: 40px;
+	text-align: center;
+}
+#banner .banner-left {
+	width: 18%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+#banner .banner-right {
+	width: 30%;
+	height: 100%;
+	text-align: right;
+	margin-right: 20px;
+}
+#banner .banner-time {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%);
+	line-height: 40px;
+}
+#banner .search,#banner .btn  {
+	width: 50%;
+	height: 100%;
+	position: relative;
+	border-right: 0.5px solid rgba(255, 255, 255, .5);
+}
+#banner .search:hover span,#banner .btn:hover span{
+	color: rgba(255, 255, 255, 1.0);
+}
+#banner .search i {
+	font-size: 18px;
+}
+
+.triangle {
+	width: 0;
+	height: 0;
+	border-width: 5px;
+	border-color: white transparent  transparent transparent;
+	border-style: solid;
+	display: block;
+	position: absolute;
+	right: 4px;
+	top: 20px;
+}
+
+.search .content {
+	width: 100%;
+	height: 40px;
+	margin-top: -1px;
+	border: 1px solid black;
+	color: black;
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

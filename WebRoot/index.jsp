@@ -4,7 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
   <head>
     <base href="<%=basePath%>">
@@ -24,6 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <form>
       <div id="particles-js">
       <div class="login">
+        <div class='error'>您的用户名或者密码不正确,请重新输入</div>
         <div class="login-top">
           登录
         </div>
@@ -48,7 +49,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <div class="sk-rotating-plane"></div>
     </div>
     </form>
-
   <script src="js/particles.min.js"></script>
   <script src="js/app.js"></script>
   <script type="text/javascript" src="js/login.js"></script>
