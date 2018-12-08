@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<link rel="stylesheet" href="//at.alicdn.com/t/font_956203_ih5wqxe2xdg.css">
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_956203_i0r8tc8tce.css">
 	<link rel="stylesheet" href="css/banner.css">
   </head>
   
@@ -23,21 +23,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<div class="banner-left fl">
     		<div class="search">
     			<i class="iconfont icon-yewubanli"></i>
-    			<span>业务办理</span>
+    			<span class="word">业务办理</span>
     			<span class="triangle"></span>
-    			<div class="content">
-	    				<i class="iconfont icon-jiantou"></i>订房
-	    		</div>
-				<div class="content">
-						<i class="iconfont icon-loading2-copy"></i>续费
-				</div>
-				<div class="content">
-						<i class="iconfont icon-jiantou"></i>退房
+    			<div class="searchBtn">
+	    			<div class="content">
+		    				<i class="iconfont icon-jiantou"></i>
+		    				<span>订房</span>
+		    		</div>
+					<div class="content">
+							<i class="iconfont icon-loading2-copy"></i>
+							<span>续费</span>
+					</div>
+					<div class="content">
+							<i class="iconfont icon-jiantou-copy"></i>
+							<span>退房</span>
+					</div>
 				</div>
     		</div>
     		<div class="btn">
     			<i class="iconfont icon-chaxun"></i>
-    			<span>客房查询</span>
+    			<span class="word">客房查询</span>
     			<span class="triangle"></span>
     		</div>
     	</div>
@@ -53,8 +58,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <script type="text/javascript">
   	$(function (){
 		var $time = $("#banner .banner-time");
-  		getTime();
-		setInterval(getTime,1000);
+		var $search = $("#banner .search");
+		$search.on('click', function(event) {
+			$("#banner .search .searchBtn").slideToggle(400);
+		});
+		
+		window.onload = function (){
+			getTime();
+			setInterval(getTime,1000);
+		}
+  		
 		function getTime(){
 			var date = new Date();
 			var time = date.toString().split(" ");

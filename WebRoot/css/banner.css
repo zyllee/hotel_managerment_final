@@ -40,7 +40,7 @@
 	position: relative;
 	border-right: 0.5px solid rgba(255, 255, 255, .5);
 }
-#banner .search:hover span,#banner .btn:hover span{
+#banner .search:hover .word,#banner .btn:hover .word{
 	color: rgba(255, 255, 255, 1.0);
 }
 #banner .search i {
@@ -59,15 +59,24 @@
 	top: 20px;
 }
 
+#banner .searchBtn {
+	display: none;
+	margin-top: -1px;
+	border: .2px solid rgba(0, 0, 0, .5);
+	border-top-left-radius: 5px;
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+}
+
+
 .search .content {
 	width: 100%;
 	height: 40px;
-	margin-top: -1px;
-	border: 1px solid black;
 	color: black;
 } 
 
-
+.search .content i {
+	margin-right: 15px;
+}
 
 
 
