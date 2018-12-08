@@ -223,30 +223,38 @@ exec dbo.getPrice '1002',3,@addMoney output,@orderNumber output,@oldExpiryTime o
 select @addMoney as addMoney,@orderNumber as orderNumber,@oldExpiryTime as oldExpiryTime,@newExpiryTime as newExpiryTime
 
 
---存储过程（解决视图选择问题）
--- USE [hotel_db]
--- GO
--- /****** Object:  StoredProcedure [dbo].[showView]    Script Date: 12/06/2018 21:41:54 ******/
--- SET ANSI_NULLS ON
--- GO
--- SET QUOTED_IDENTIFIER ON
--- GO
--- create PROCEDURE [dbo].[showView](
--- 	@Type varchar(25)
--- )
--- AS
--- BEGIN
--- 	if @Type = 'incomeViews'
--- 		select * from dbo.incomeView
--- 	else if @Type = 'orderView'
--- 		select * from orderView
--- 	else if @Type = 'roomInfoView'
--- 		select * from roomInfoView
--- 	else if @Type = 'timeExtensionOrdersView'
--- 		select * from timeExtensionOrdersView
--- END
--- --测试存储过程（解决视图选择问题）
--- declare @Type varchar(25)
--- set @Type = 'timeExtensionOrdersView'
--- exec showView @Type
+存储过程（解决订单视图查询选择）
+USE [hotel_db]
+GO
+/****** Object:  StoredProcedure [dbo].[showView]    Script Date: 12/06/2018 21:41:54 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create PROCEDURE [dbo].[ChooseSearchInfo](
+	@para varchar(25),
+	@Type varchar(25)
+)
+AS
+BEGIN
+	if @Type = 'customerName'
+		select * from orderView where customerName like '%'+@para+'%'
+	else if @Type = 'roomNumber'
+		select * from orderView where roomNumber like '%'+@para+'%'
+	else if @Type = 'roomType'
+		select * from orderview where roomType like '%'+@para+'%'
+	else if @Type = 'orderTime'
+		select * from orderview where checkInTime like '%'+@para+'%'
+	else if @Type = 'checkOutTime'
+		select * from orderview where checkOutTime like '%'+@para+'%'
+	else if @Type = 'customerPhoneNumber'
+		select * from orderview where customerPhoneNumber like '%'+@para+'%'
+	else if @Type = 'totalMoney'
+		select * from orderview where totalMoney like '%'+@para+'%'
+	END
+--测试存储过程（解决视图选择问题）
+declare @Type varchar(25),@para varchar(25)
+set @Type = 'totalMoney'
+set @para = '3'
+exec ChooseSearchInfo @para,@Type
 
