@@ -28,34 +28,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			<div class="searchBtn">
 	    			<div class="content reserve">
 	    				<i class="iconfont icon-jiantou"></i>
-	    				<span><a href="javascript:;">订房</a></span>
+	    				<span>订房</span>
 		    		</div>
 					<div class="content timeExtension">
 						<i class="iconfont icon-loading2-copy"></i>
-						<span><a href="javascript:;">续费</a></span>
+						<span>续费</span>
 					</div>
 					<div class="content leave">
 						<i class="iconfont icon-jiantou-copy"></i>
-						<span><a href="javascript:;">退房</a></span>
+						<span>退房</span>
 					</div>
 				</div>
     		</div>
-    		<div class="btn">
+    		<div class="view">
     			<i class="iconfont icon-chaxun"></i>
-    			<span class="word">客房查询</span>
+    			<span class="word">视图查询</span>
+    		</div>
+			<div class="find">
+    			<i class="iconfont icon-chaxun"></i>
+    			<span class="word">各种查询</span>
     			<span class="triangle"></span>
     			<div class="searchBtn">
 	    			<div class="content reserve">
 	    				<i class="iconfont icon-jiantou"></i>
-	    				<span><a href="javascript:;">订房</a></span>
+	    				<span>收入查询</span>
 		    		</div>
-					<div class="content timeExtension">
+					<div class="content reserve">
 						<i class="iconfont icon-loading2-copy"></i>
-						<span><a href="javascript:;">续费</a></span>
+						<span>订单查询</span>
 					</div>
-					<div class="content leave">
+					<div class="content reserve">
 						<i class="iconfont icon-jiantou-copy"></i>
-						<span><a href="javascript:;">退房</a></span>
+						<span>房间查询</span>
+					</div>
+					<div class="content reserve">
+						<i class="iconfont icon-jiantou-copy"></i>
+						<span>续费查询</span>
 					</div>
 				</div>
     		</div>
