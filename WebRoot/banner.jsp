@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<link rel="stylesheet" href="//at.alicdn.com/t/font_956203_qa5tpt4r5wh.css">
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_956203_b8tlsmdvn1d.css">
 	<link rel="stylesheet" href="css/banner.css">
   </head>
   
@@ -46,26 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		</div>
 			<div class="find">
     			<i class="iconfont icon-chaxun"></i>
-    			<span class="word">各种查询</span>
-    			<span class="triangle"></span>
-    			<div class="searchBtn">
-	    			<div class="content reserve">
-	    				<i class="iconfont icon-jiantou"></i>
-	    				<span>收入查询</span>
-		    		</div>
-					<div class="content reserve">
-						<i class="iconfont icon-loading2-copy"></i>
-						<span>订单查询</span>
-					</div>
-					<div class="content reserve">
-						<i class="iconfont icon-jiantou-copy"></i>
-						<span>房间查询</span>
-					</div>
-					<div class="content reserve">
-						<i class="iconfont icon-jiantou-copy"></i>
-						<span>续费查询</span>
-					</div>
-				</div>
+    			<span class="word">订单浏览</span>
     		</div>
     	</div>
     	<div class="banner-right fr">

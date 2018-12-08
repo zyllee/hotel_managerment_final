@@ -24,15 +24,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-   	<h1>房间信息视图</h1>
-    <table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#666666">
-    	<tr>
-    		<th bgcolor="#FFFFFF">房间号</th>
-    		<th bgcolor="#FFFFFF">房间类型</th>
-    		<th bgcolor="#FFFFFF">房间备注</th>
-    		<th bgcolor="#FFFFFF">价格</th>
-    	</tr>
-		<%
+  	<jsp:include page="showView.jsp"></jsp:include>
+   	<h4>房间信息视图</h4>
+		
+
+	<table id="hor-minimalist-b" summary="Employee Pay Sheet">
+	    <thead>
+	    	<tr>
+	        	<th scope="col">房间号</th>
+	            <th scope="col">房间类型</th>
+	            <th scope="col">房间备注</th>
+	            <th scope="col">价格</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	    <%
 			List<roomInfoViewBean> list = (List<roomInfoViewBean>) request.getAttribute("list");
 			if(list == null || list.size() <  1){
 				out.print("<tr><td bgcolor='#FFFFFF' colspan='5'>没有任何信息</td></tr>");
@@ -40,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				for(roomInfoViewBean e: list){
 					
 		%>
-		<tr align="center">
+		<tr>
 			<td bgcolor="#FFFFFF"><%=e.getRoomNumber()%></td>
 			<td bgcolor="#FFFFFF"><%=e.getRoomType()%></td>
 			<td bgcolor="#FFFFFF"><%=e.getRemarks()%></td>
@@ -50,7 +56,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 		}
 		 %>	
-    </table>
-    <a href="showView.jsp">返回视图查询</a>
+    	</tbody>
+	</table>
+
+
   </body>
 </html>

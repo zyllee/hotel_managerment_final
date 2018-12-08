@@ -21,11 +21,6 @@ $(function() {
 			$("#banner .find .searchBtn").stop(true, true).slideUp(400);
 			$("#banner .search .searchBtn").stop(true, true).slideToggle(400);
 		});
-		$find.on('click', function(event) {
-			event.preventDefault();
-			$("#banner .search .searchBtn").stop(true, true).slideUp(400);
-			$("#banner .find .searchBtn").stop(true, true).slideToggle(400);
-		});
 	}
 	//获取系统当前时间
 	function getTime() {
@@ -37,7 +32,7 @@ $(function() {
 	//点击菜单栏 跳转相应的页面
 	function search() {
 		//点击入房退房等等
-		var $searchBtn = $("#banner .searchBtn");
+		var $searchBtn = $("#banner .search .searchBtn");
 		$searchBtn.on('click', '.content', function(event) {
 			var className = $(this).attr('class');
 			console.log(className);
@@ -48,6 +43,9 @@ $(function() {
 		//点击视图查询，跳转相应的页面
 		$view.on('click', function(event) {
 			$iframe.attr('src', "showView.jsp");
+		});
+		$find.on('click', function(event) {
+			$iframe.attr('src', "searchInfo.jsp");
 		});
 	}
 });

@@ -16,15 +16,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+	
 	<script src="js/jquery.js"></script>
   </head>
   
   <body>
-    <h1>搜索</h1>
-    <!-- 按类别：<br>
+    <div class="search">
+      搜索
+    </div>
+    按类别：<br>
     		姓名<input type="radio" name="orderProperty" value="customerName"><br>
 			房间号<input type="radio" name="orderProperty" value="roomNumber"><br>
 			房间类型<input type="radio" name="orderProperty" value="roomType"><br>
@@ -32,10 +32,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			入住时间<input type="radio" name="orderProperty" value="checkInTime"><br>
 			退房时间<input type="radio" name="orderProperty" value="checkOutTime"><br>
 			联系方式<input type="radio" name="orderProperty" value="customerPhoneNumber"><br>
-			总金额<input type="radio" name="orderProperty" value="totalMoney"><br> -->
-  按类型：
-      <input type="text" name="orderProperty"><br>
-	查询内容：<input type="text" name="SearchInfo">
+			总金额<input type="radio" name="orderProperty" value="totalMoney"><br>
+ 
 			<input type="button" name="submitSearchInfo" value="确定">
   </body>
   <script>

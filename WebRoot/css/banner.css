@@ -7,7 +7,7 @@
 #iframe {
 	width: 102%;
 	height: 571px;
-	overflow-x: hidden;
+	overflow-x: hidden!important;
 	overflow-y: scroll;
 }
 #iframe::-webkit-scrollbar { 
@@ -48,17 +48,17 @@
 	transform: translate(-50%);
 	line-height: 40px;
 }
-#banner .search,#banner .btn,#banner .find  {
+#banner .search,#banner .view,#banner .find  {
 	width: 30%;
 	height: 100%;
 	position: relative;
 	z-index: 999;
 	border-right: 0.5px solid rgba(255, 255, 255, .5);
 }
-#banner .search:hover .word,#banner .btn:hover .word{
+#banner .search:hover .word,#banner .view:hover .word,#banner .find:hover .word{
 	color: rgba(255, 255, 255, 1.0);
 }
-#banner .search i,#banner .btn i {
+#banner .search i,#banner .find i{
 	font-size: 18px;
 }
 

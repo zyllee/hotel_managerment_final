@@ -3,31 +3,68 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <base href="<%=basePath%>">
-    
     <title>视图</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	
-	
-  </head>
-  
-  <body>
-  	<h1>视图</h1>
-  	<form action="FindViewServlet" method="post">
-  	查询种类:收入视图<input type="radio" name="viewType" value="incomeView"><br>
-  			订单视图<input type="radio" name="viewType" value="orderView"><br>
-  			房间信息视图<input type = "radio" name="viewType" value="roomInfoView"><br>
-  			续费视图<input type="radio" name="viewType" value="timeExtensionOrdersView"><br>
-  	<input type="submit" value="提交">
-  	</form>
-  </body>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
+    <link rel="stylesheet" href="css/other.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_956203_b8tlsmdvn1d.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <style>
+        *{
+          padding: 0;
+          margin: 0;
+        }
+        #myform {
+          width: 100%;
+          height: 40px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: center;
+          text-align: center;
+          color: black;
+          cursor: pointer;
+        }
+        
+        input,button {
+          border: none;
+          outline: none;
+          cursor: pointer;
+          font-size: 18px;
+      }
+       #myform button {
+          width: 25%;
+          background: purple;
+          color: white;
+          height: 100%;
+          transition: .5s;
+       }
+       #myform button:hover {
+        background: white;
+        color: black;
+       }
+       h4 {
+        text-align: center;
+        margin: auto;
+       }
+    </style>
+</head>
+
+<body>
+    <form id="myform" action="FindViewServlet" method="post">
+        <button value="incomeView" name="viewType">收入视图</button>
+        <button value="orderView" name="viewType">订单视图</button>
+        <button value="roomInfoView" name="viewType">房间视图</button>
+        <button value="timeExtensionOrdersView" name="viewType">续费视图</button>
+    </form>
+</body>
+
 </html>
