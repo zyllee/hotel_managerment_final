@@ -5,14 +5,15 @@
 /* 最重要的一部分，样式 */
 /* 即iframe的样式 */
 #iframe {
-	width: 80%;
-	height: 100%;
-	overflow: hidden;
-	float: right;
-	background: pink;
+	width: 102%;
+	height: 571px;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
-
-
+#iframe::-webkit-scrollbar { 
+	display: none;
+	width: 0!important;
+}
 
 
 #banner {
@@ -27,7 +28,7 @@
 	text-align: center;
 }
 #banner .banner-left {
-	width: 18%;
+	width: 30%;
 	height: 100%;
 	display: flex;
 	flex-direction: row;
@@ -47,8 +48,8 @@
 	transform: translate(-50%);
 	line-height: 40px;
 }
-#banner .search,#banner .btn  {
-	width: 50%;
+#banner .search,#banner .btn,#banner .find  {
+	width: 30%;
 	height: 100%;
 	position: relative;
 	z-index: 999;
@@ -75,7 +76,8 @@
 
 #banner .searchBtn {
 	display: none;
-	margin-top: -1px;
+	position: relative;
+	top: -1px;
 	border: .2px solid rgba(0, 0, 0, .5);
 	border-top-left-radius: 5px;
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
@@ -85,8 +87,16 @@
 #banner .content {
 	width: 100%;
 	height: 40px;
-	color: black;
+	/* color: black; */
+	border: .1px solid rgba(0, 0, 0, .1);
+	transition: all .5s;
+	background: black;
+	color: white;
 } 
+#banner .content:hover{
+	background: white;
+	color: black;
+}
 
 #banner .content i {
 	margin-right: 15px;

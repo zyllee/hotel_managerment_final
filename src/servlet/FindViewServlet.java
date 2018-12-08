@@ -38,26 +38,26 @@ public class FindViewServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		//³õÊ¼»¯
+		//åˆå§‹åŒ–
 		String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 		String url = "jdbc:sqlserver://localhost:1433;Database=hotel_db";
 		String user = "sa";
 		String pwd = "160510111xyj";
 		String viewType = request.getParameter("viewType");
 		System.out.println(viewType);
-		String sql_income = "select * from incomeView";//ÊÕÈëÊÓÍ¼²éÑ¯Óï¾ä
-		String sql_order = "select * from orderView";//¶©µ¥ÊÓÍ¼²éÑ¯Óï¾ä
-		String sql_roomInfoView = "select * from roomInfoView";//·¿¼äĞÅÏ¢ÊÓÍ¼
-		String sql_timeExtension = "select * from timeExtensionOrdersView";//Ğø·Ñ¶©µ¥ÊÓÍ¼
+		String sql_income = "select * from incomeView";//æ”¶å…¥è§†å›¾æŸ¥è¯¢è¯­å¥
+		String sql_order = "select * from orderView";//è®¢å•è§†å›¾æŸ¥è¯¢è¯­å¥
+		String sql_roomInfoView = "select * from roomInfoView";//æˆ¿é—´ä¿¡æ¯è§†å›¾
+		String sql_timeExtension = "select * from timeExtensionOrdersView";//ç»­è´¹è®¢å•è§†å›¾
 		Connection conn;
 		try {
 			Class.forName(driverName);
 			try {
 				conn = DriverManager.getConnection(url,user,pwd);
 				Statement st = conn.createStatement();
-				if(viewType.equals("incomeView"))//Ö´ĞĞÊÕÈëÊÓÍ¼²éÑ¯
+				if(viewType.equals("incomeView"))//æ‰§è¡Œæ”¶å…¥è§†å›¾æŸ¥è¯¢
 				{
-					System.out.println("Ö´ĞĞÊÕÈëÊÓÍ¼³É¹¦!");
+					System.out.println("æ‰§è¡Œæ”¶å…¥è§†å›¾æˆåŠŸ!");
 					ResultSet rs = st.executeQuery(sql_income);
 					List<incomeViewBean> list = new ArrayList<incomeViewBean>();
 					while(rs.next()){
@@ -72,8 +72,8 @@ public class FindViewServlet extends HttpServlet {
 					}
 					request.setAttribute("list",list);
 				}
-				else if(viewType.equals("orderView")){//Ö´ĞĞ¶©µ¥ÊÓÍ¼²éÑ¯
-					System.out.println("Ö´ĞĞ¶©µ¥ÊÓÍ¼³É¹¦!");
+				else if(viewType.equals("orderView")){//æ‰§è¡Œè®¢å•è§†å›¾æŸ¥è¯¢
+					System.out.println("æ‰§è¡Œè®¢å•è§†å›¾æˆåŠŸ!");
 					ResultSet rs = st.executeQuery(sql_order);
 					List<orderViewBean> list = new ArrayList<orderViewBean>();
 					while(rs.next()){
@@ -103,7 +103,7 @@ public class FindViewServlet extends HttpServlet {
 					request.setAttribute("list",list);
 				}
 				else if(viewType.equals("roomInfoView")){
-					System.out.println("Ö´ĞĞ·¿¼äĞÅÏ¢ÊÓÍ¼³É¹¦!");
+					System.out.println("æ‰§è¡Œæˆ¿é—´ä¿¡æ¯è§†å›¾æˆåŠŸ!");
 					ResultSet rs = st.executeQuery(sql_roomInfoView);
 					List<roomInfoViewBean> list = new ArrayList<roomInfoViewBean>();
 					while (rs.next()) {
@@ -121,7 +121,7 @@ public class FindViewServlet extends HttpServlet {
 					request.setAttribute("list",list);
 				}
 				else if(viewType.equals("timeExtensionOrdersView")){
-					System.out.println("Ö´ĞĞĞø·Ñ¶©µ¥ÊÓÍ¼³É¹¦!");
+					System.out.println("æ‰§è¡Œç»­è´¹è®¢å•è§†å›¾æˆåŠŸ!");
 					ResultSet rs = st.executeQuery(sql_timeExtension);
 					List<timeExtensionOrdersViewBean> list = new ArrayList<timeExtensionOrdersViewBean>();
 					while(rs.next()){
@@ -147,7 +147,7 @@ public class FindViewServlet extends HttpServlet {
 					request.setAttribute("list",list);
 				}
 				else{
-					System.out.println("½øÈëÊÓÍ¼Ê§°Ü£¡");
+					System.out.println("è¿›å…¥è§†å›¾å¤±è´¥ï¼");
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
