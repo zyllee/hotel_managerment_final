@@ -5,7 +5,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <%@ page import="java.util.*" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
 <html>
   <head>
     <base href="<%=basePath%>">
@@ -17,37 +17,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-
+	<style>
+		h4 {
+			text-align: center;
+			margin: 0 auto;
+		}
+	</style>
   </head>
   <body>
-  	<h1>收入视图</h1>
-    <table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#666666">
-    	<tr>
-    		<th bgcolor="#FFFFFF">退房时间</th>
-    		<th bgcolor="#FFFFFF">总价</th>
-    		<th bgcolor="#FFFFFF">订单个数</th>
-    	</tr>
-		<%
+  	<jsp:include page="showView.jsp"></jsp:include>
+
+  	<h4>收入视图</h4>
+
+  	<table id="hor-minimalist-b" summary="Employee Pay Sheet">
+	    <thead>
+	    	<tr>
+	        	<th scope="col">退房时间</th>
+	            <th scope="col">总价</th>
+	            <th scope="col">订单个数</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	    <%
 			List<incomeViewBean> list = (List<incomeViewBean>) request.getAttribute("list");
 			if(list == null || list.size() <  1){
-				out.print("<tr><td bgcolor='#FFFFFF' colspan='5'>没有任何信息</td></tr>");
+				out.print("<tr><td>暂无信息</td></tr>");
 			}else{
 				for(incomeViewBean e: list){
-					
 		%>
-		<tr align="center">
-			<td bgcolor="#FFFFFF"><%=e.getCheckOutTime()%></td>
-			<td bgcolor="#FFFFFF"><%=e.getTotalIncome()%></td>
-			<td bgcolor="#FFFFFF"><%=e.getNum()%></td>
+		<tr >
+			<td><%=e.getCheckOutTime()%></td>
+			<td><%=e.getTotalIncome()%></td>
+			<td><%=e.getNum()%></td>
 		</tr>
 		<%
 			}
 		}
 		 %>	
-    </table>
-    <a href="showView.jsp">返回视图查询</a>
+    	</tbody>
+	</table>
+    
   </body>
 </html>
