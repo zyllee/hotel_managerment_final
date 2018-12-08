@@ -2,6 +2,19 @@
 	padding: 0;
 	margin: 0;
 }
+/* 最重要的一部分，样式 */
+/* 即iframe的样式 */
+#iframe {
+	width: 80%;
+	height: 100%;
+	overflow: hidden;
+	float: right;
+	background: pink;
+}
+
+
+
+
 #banner {
 	width: 100%;
 	height: 40px;
@@ -38,12 +51,13 @@
 	width: 50%;
 	height: 100%;
 	position: relative;
+	z-index: 999;
 	border-right: 0.5px solid rgba(255, 255, 255, .5);
 }
 #banner .search:hover .word,#banner .btn:hover .word{
 	color: rgba(255, 255, 255, 1.0);
 }
-#banner .search i {
+#banner .search i,#banner .btn i {
 	font-size: 18px;
 }
 
@@ -68,13 +82,13 @@
 }
 
 
-.search .content {
+#banner .content {
 	width: 100%;
 	height: 40px;
 	color: black;
 } 
 
-.search .content i {
+#banner .content i {
 	margin-right: 15px;
 }
 
