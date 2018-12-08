@@ -1,0 +1,197 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+/* 最重要的一部分，样式 */
+/* 即iframe的样式 */
+#iframe {
+	width: 80%;
+	height: 100%;
+	overflow: hidden;
+	float: right;
+	background: pink;
+}
+
+
+
+
+#banner {
+	width: 100%;
+	height: 40px;
+	background: black;
+	font-size: 16px;
+	position: relative;
+	cursor: pointer;
+	color: rgba(255, 255, 255, .8);
+	line-height: 40px;
+	text-align: center;
+}
+#banner .banner-left {
+	width: 18%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+#banner .banner-right {
+	width: 30%;
+	height: 100%;
+	text-align: right;
+	margin-right: 20px;
+}
+#banner .banner-time {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%);
+	line-height: 40px;
+}
+#banner .search,#banner .btn  {
+	width: 50%;
+	height: 100%;
+	position: relative;
+	z-index: 999;
+	border-right: 0.5px solid rgba(255, 255, 255, .5);
+}
+#banner .search:hover .word,#banner .btn:hover .word{
+	color: rgba(255, 255, 255, 1.0);
+}
+#banner .search i,#banner .btn i {
+	font-size: 18px;
+}
+
+.triangle {
+	width: 0;
+	height: 0;
+	border-width: 5px;
+	border-color: white transparent  transparent transparent;
+	border-style: solid;
+	display: block;
+	position: absolute;
+	right: 4px;
+	top: 20px;
+}
+
+#banner .searchBtn {
+	display: none;
+	margin-top: -1px;
+	border: .2px solid rgba(0, 0, 0, .5);
+	border-top-left-radius: 5px;
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+}
+
+
+#banner .content {
+	width: 100%;
+	height: 40px;
+	color: black;
+} 
+
+#banner .content i {
+	margin-right: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
