@@ -57,6 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             var checkOutDate;//转格式后储存的变量
             var roomNumber;//房间号
             var price;//价格
+            var roomUrl;//房间图片
             //转换格式（日期->字符串），以便插入数据库
             checkInTime.on('change', function(event) {
                 event.preventDefault();
@@ -85,8 +86,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     					// console.log(data);
     				    price = data[0].price;
                         roomNumber =data[0].roomNumber;
+                        roomUrl = data[0].roomUrl;
                         console.log(roomNumber);
                         console.log(price);
+                        console.log(roomUrl);
                     }
     			});
     		});
