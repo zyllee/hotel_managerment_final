@@ -161,6 +161,7 @@ on orders.customerIDCard = customers.customerIDCard
 --select * from timeExtensionOrdersView
 
 --创建订单视图
+drop view orderview
 create view orderview
 as
 select top 100 percent
