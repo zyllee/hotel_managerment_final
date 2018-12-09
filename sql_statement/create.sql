@@ -173,7 +173,8 @@ select top 100 percent
     orders.checkInTime,
     orders.checkOutTime,
     customers.customerPhoneNumber,
-    orders.totalMoney
+    orders.totalMoney,
+    room.roomUrl
 from orders inner join customers
 on orders.customerIDCard = customers.customerIDCard
 inner join room
