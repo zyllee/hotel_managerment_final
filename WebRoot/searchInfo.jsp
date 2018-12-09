@@ -15,43 +15,64 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       padding: 0;
       margin: 0;
     }
-    
-    .container {
+    body,html {
       width: 100%;
-      height: 50px;
+      height: 100%;
+      font-size: 14px;
+    }
+    .container {
+      width: 200px;
+      border: .4px solid rgba(0, 0, 0, .5);
+      position: absolute;
+      left: 10%;
+      top: 30%;
+      transform: translate(-10%, -30%);
+      border-radius: 5px;
+      box-shadow: .5px .5px 3px gray;
+      cursor: pointer;
+    }
+    .container .items {
+      width: 100%;
+      line-height: 40px;
       position: relative;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-      cursor: pointer;
-      background: purple;
-      color: white;
+      border-bottom: .3px solid rgba(0, 0, 0, .5);
     }
-    .pay_list_c1 {
-      width: 24px;
-      height: 18px;
-      float: left;
-      padding-top: 3px;
-      cursor: pointer;
-      text-align: center;
-      margin-right: 10px;
-      background-image: url(img/inputradio.gif);
-      background-repeat: no-repeat;
-      background-position: -24px 0;
+    
+    .items .items-word {
+      margin-left: 50px;
+      color: purple;
     }
-    .radioclass {
-      opacity: 0;
-      cursor: pointer;
+    .triangle {
+      width: 0;
+      height: 0;
+      display: block;
+      border-width: 6px;
+      border-style: solid;
+      border-color: purple transparent transparent transparent;
+      position: absolute;
+      left: 25px;
+      top: 16px;
+    }
+    .items .content {
+      margin-left: 50px;
+      position: relative;
+    }
+    input[type=radio] {
+      display: none;
+    }
+    .radio {
+      background: url('img/inputradio.gif') no-repeat -27px -1px;
+      width: 17px;
+      height: 16px;
+      position: absolute;
+      display: block;
+      left: -28px;
+      top: 11.5px;
     }
     .on {
-      background-position: 0 0;
-    }
-    .items span:first-child {
-      float: left;
-      font-size: 15px;
-      margin-top: -1px;
+      background: url('img/inputradio.gif') no-repeat -3px 0;
+      width: 17px;
+      height: 18px;
     }
     
     .search-button{
@@ -78,8 +99,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       line-height: 45px;
     }
     #body {
-      background: rgba(128, 0, 128, .1);
+      background: rgba(128, 0, 128, .05);
     }
+
 
   </style>
     <script type="text/javascript" src="js/jquery.js"></script>
@@ -87,59 +109,63 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <body id="body">
     <div class="container">
-        <div class="items">
-          <span>姓名</span>
-            <span class="pay_list_c1 on">
-        <input type="radio" value="customerName" class="radioclass">
-      </span>
+      <div class="items">
+        <span class="triangle"></span>
+        <span class="items-word">姓名</span>
+        <div class="content">
+          <i class="radio"><input type="radio" value="customerName"></i><span></span>姓名
         </div>
-        <div class="items">
-          <span>房间号</span>
-            <span class="pay_list_c1">
-        <input type="radio" value="roomNumber" class="radioclass">
-      </span>
+      </div>
+      <div class="items">
+        <span class="items-word">房间</span>
+        <div class="content">
+          <i class="radio"><input type="radio" value="roomNumber"></i><span>房间号</span>
         </div>
-        <div class="items">
-          <span>房间类型</span>
-            <span class="pay_list_c1">
-        <input type="radio"  value="roomType" class="radioclass">
-      </span>
+        <div class="content">
+          <i class="radio"><input type="radio" value="roomType"></i><span>房间类型</span>
         </div>
-        <div class="items">
-          <span>预订时间</span>
-            <span class="pay_list_c1">
-        <input type="radio"  value="orderTime" class="radioclass">
-      </span>
+        <span class="triangle"></span>
+      </div>
+      <div class="items">
+        <span class="triangle"></span>
+        <span class="items-word">时间</span>
+        <div class="content">
+          <i class="radio"><input type="radio" value="checkInTime"></i><span>入住时间</span>
         </div>
-        <div class="items">
-          <span>入住时间</span>
-            <span class="pay_list_c1">
-        <input type="radio"  value="checkInTime" class="radioclass">
-      </span>
+        <div class="content">
+          <i class="radio"><input type="radio"></i><span>退房时间</span>
         </div>
-        <div class="items">
-          <span>退房时间</span>
-            <span class="pay_list_c1">
-        <input type="radio" value="checkOutTime" class="radioclass">
-      </span>
+        <div class="content">
+          <i class="radio"><input type="radio" value="orderTime"></i><span></span>预订时间
         </div>
-        <div class="items">
-          <span>联系方式</span>
-            <span class="pay_list_c1">
-        <input type="radio"  value="customerPhoneNumber" class="radioclass">
-      </span>
+        <div class="content">
+          <i class="radio"><input type="radio" value="checkOutTime"></i><span>退房时间</span>
         </div>
-        <div class="items">
-          <span>总金额</span>
-            <span class="pay_list_c1">
-        <input type="radio" value="totalMoney" class="radioclass">
-      </span>
+      </div>
+      <div class="items">
+        <span class="triangle"></span>
+        <span class="items-word">联系方式</span>
+        <div class="content">
+          <i class="radio"><input type="radio" value="customerPhoneNumber"></i><span>联系方式</span>
         </div>
+      </div>
+      <div class="items">
+        <span class="triangle"></span>
+        <span class="items-word">金额</span>
+        <div class="content">
+          <i class="radio">
+            <input type="radio" value="totalMoney">
+          </i>
+          <span>金额</span>
+        </div>
+      </div>
     </div>
-
+    
     <div class="search-button">
       <input type="text" id="search" placeholder="">
     </div>
+    
+
 </body>
 <script type="text/javascript">
   $(function() {
@@ -151,9 +177,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     }
     function init(){
       $search.attr('placeholder', '请输入姓名');
-      $(".pay_list_c1").on("click", function() {
+      $(".radio").on("click", function() {
           selectValue = $(this).find('input').val();
-            $(this).addClass("on").parents('.items').siblings('.items').find('.pay_list_c1').removeClass("on");
             var $placeholderContent = $(this).siblings('span').text();
             console.log($placeholderContent);
             $search.attr('placeholder', "请输入" + $placeholderContent);
@@ -208,6 +233,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         console.log(data);
         
     }
+  });
+  $(function (){
+    var $radio = $(".items .content i");
+    $radio.on('click', function(event) {
+      $(this).addClass('on');
+      $(this).parents('.content').siblings().find('i').removeClass('on');
+      $(this).parents('.items').siblings().find('.content i').removeClass('on');      
+    });
   });
 </script>
 
