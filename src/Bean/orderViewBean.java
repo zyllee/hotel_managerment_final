@@ -14,6 +14,13 @@ public class orderViewBean {
 	private Date checkOutTime;
 	private String customerPhoneNumber;
 	private int totalMoney;
+	private String roomUrl;
+	public String getRoomUrl() {
+		return roomUrl;
+	}
+	public void setRoomUrl(String roomUrl) {
+		this.roomUrl = roomUrl;
+	}
 	public int getOrderNumber() {
 		return orderNumber;
 	}
