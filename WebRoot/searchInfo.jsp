@@ -40,17 +40,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           $(function(){
             var $submitSearchInfo = $("input[name=submitSearchInfo]");
             $submitSearchInfo.on('click', function() {
-              var orderProperty = $("input[name=orderProperty]").val();
-              var SearchInfo = $("input[name=SearchInfo]").val();
-              console.log(orderProperty);
-              console.log(SearchInfo);
               $.ajax({
                   url:'SearchInfoServlet',
                   type:'post',
                   dataType:'json',
                   data: {
-                    'orderProperty':orderProperty,
-                    'SearchInfo':SearchInfo
+                    'orderProperty':'customerName',
+                    'SearchInfo':'少夫人'
                   },
                   success:function(data){
                       console.log(data);

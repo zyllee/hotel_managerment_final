@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+			padding: 0;
+			margin: 0;
+		}
+		
+		.container {
+			width: 100%;
+			height: 50px;
+			background: rgba(128, 0, 128,.8);
+			position: relative;
+			margin: 0 auto;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			align-items: center;
+			cursor: pointer;
+			color: white;
+		}
+		.pay_list_c1 {
+			width: 24px;
+			height: 18px;
+			float: left;
+			padding-top: 3px;
+			cursor: pointer;
+			text-align: center;
+			margin-right: 10px;
+			background-image: url(img/inputradio.gif);
+			background-repeat: no-repeat;
+			background-position: -24px 0;
+		}
+		.radioclass {
+			opacity: 0;
+			cursor: pointer;
+		}
+		.on {
+			background-position: 0 0;
+		}
+		.items span:first-child {
+			float: left;
+			font-size: 15px;
+			margin-top: -1px;
+		}
+		
+		.search-button{
+			width: 500px;
+			height: 45px;
+			background: white;
+			border-radius: 50px;
+			left: 50%;
+			top: 30%;
+			transform: translate(-50%,30%);
+			border: 1px solid gray;
+			/* background: rgba(128, 0, 128, .5); */
+			position: relative;
+			cursor: pointer;
+		}
+		.search-button input {
+			width: 90%;
+			height: 100%;
+			outline: none;
+			border: none;
+			border-radius: 50px;
+			font-size: 25px;
+			margin: 0 auto;
+			display: block;
+		}
+		#body {
+			background: rgba(128, 0, 128, .1);
+		}
+
+	</style>
+    <script type="text/javascript" src="js/jquery.js"></script>
+</head>
+
+<body id="body">
+    <div class="container">
+        <div class="items">
+        	<span>姓名</span>
+            <span class="pay_list_c1 on">
+				<input type="radio" name="orderProperty" value="customerName" class="radioclass">
+			</span>
+        </div>
+        <div class="items">
+        	<span>房间号</span>
+            <span class="pay_list_c1">
+				<input type="radio" name="orderProperty" value="roomNumber" class="radioclass">
+			</span>
+        </div>
+        <div class="items">
+        	<span>房间类型</span>
+            <span class="pay_list_c1">
+				<input type="radio"  name="orderProperty" value="roomType" class="radioclass">
+			</span>
+        </div>
+        <div class="items">
+        	<span>预订时间</span>
+            <span class="pay_list_c1">
+				<input type="radio"  name="orderProperty" value="orderTime" class="radioclass">
+			</span>
+        </div>
+        <div class="items">
+        	<span>入住时间</span>
+            <span class="pay_list_c1">
+				<input type="radio"  name="orderProperty" value="checkInTime" class="radioclass">
+			</span>
+        </div>
+        <div class="items">
+        	<span>退房时间</span>
+            <span class="pay_list_c1">
+				<input type="radio" name="orderProperty" value="checkOutTime" class="radioclass">
+			</span>
+        </div>
+        <div class="items">
+        	<span>联系方式</span>
+            <span class="pay_list_c1">
+				<input type="radio"  name="orderProperty" value="customerPhoneNumber" class="radioclass">
+			</span>
+        </div>
+        <div class="items">
+        	<span>总金额</span>
+            <span class="pay_list_c1">
+				<input type="radio"  name="orderProperty" value="totalMoney" class="radioclass">
+			</span>
+        </div>
+    </div>
+
+    <div class="search-button">
+    	<input type="text" >
+    </div>
+</body>
+<script type="text/javascript">
+	$(function() {
+	    $(".pay_list_c1").on("click", function() {
+	        $(this).addClass("on").parents('.items').siblings('.items').find('.pay_list_c1').removeClass("on");
+	    });
+
+	});
+</script>
+
+</html>

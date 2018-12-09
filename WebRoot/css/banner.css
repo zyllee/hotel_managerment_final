@@ -5,10 +5,9 @@
 /* 最重要的一部分，样式 */
 /* 即iframe的样式 */
 #iframe {
-	width: 102%;
+	width: 100%;
 	height: 571px;
-	overflow-x: hidden!important;
-	overflow-y: scroll;
+	overflow: auto;
 }
 #iframe::-webkit-scrollbar { 
 	display: none;
@@ -49,7 +48,7 @@
 	line-height: 40px;
 }
 #banner .search,#banner .view,#banner .find  {
-	width: 30%;
+	width: 33.33%;
 	height: 100%;
 	position: relative;
 	z-index: 999;
@@ -87,7 +86,6 @@
 #banner .content {
 	width: 100%;
 	height: 40px;
-	/* color: black; */
 	border: .1px solid rgba(0, 0, 0, .1);
 	transition: all .5s;
 	background: black;

@@ -21,6 +21,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     <!-- 加载不同页面 -->
-	<iframe id="iframe" src="arrive.jsp"  runat="server" frameborder="no" border="0" marginwidth="0" marginheight="0" allowtransparency="yes"></iframe>
+	<iframe id="iframe" src="arrive.jsp"  runat="server" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="auto" allowtransparency="yes"></iframe>
   </body>
 </html>
