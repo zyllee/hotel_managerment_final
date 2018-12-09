@@ -52,7 +52,7 @@ public class SearchByTime extends HttpServlet {
 //			// TODO Auto-generated catch block
 //			e1.printStackTrace();
 //		}
-		String sql = "select room.roomType,roomTypeAndPrice.price,room.roomNumber from room inner join roomTypeAndPrice on room.roomType = roomTypeAndPrice.roomType where roomNumber not in (select orders.roomNumber from orders where((orders.checkInTime  between '"+checkinTime+"' and '"+checkOutTime+"')) or ((orders.checkOutTime between '"+checkinTime+"' and '"+checkOutTime+"')))";
+		String sql = "select room.roomType,roomTypeAndPrice.price,room.roomNumber,room.roomUrl from room inner join roomTypeAndPrice on room.roomType = roomTypeAndPrice.roomType where roomNumber not in (select orders.roomNumber from orders where((orders.checkInTime  between '"+checkinTime+"' and '"+checkOutTime+"')) or ((orders.checkOutTime between '"+checkinTime+"' and '"+checkOutTime+"')))";
 		java.sql.Connection conn;
 		try {
 			Class.forName(DriverName);
@@ -65,11 +65,13 @@ public class SearchByTime extends HttpServlet {
 					String roomType = rs.getString("roomType");
 					String roomNumber = rs.getString("roomNumber");
 					String price = rs.getString("price");
+					String roomUrl = rs.getString("roomUrl");
 //					Map<String,String> e = new HashMap();
 					Map e = new HashMap();
 					e.put("roomType", roomType);
 					e.put("roomNumber",roomNumber);
 					e.put("price", price);
+					e.put("roomUrl", roomUrl);
 					list.add(e);
 				}
 				JSONArray json = JSONArray.fromObject(list);
