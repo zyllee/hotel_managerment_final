@@ -121,3 +121,6 @@ canvas{
   color: dodgerblue;
   font-size: 16px;
 }
+.error  a {
+  display: inline-block;
+}

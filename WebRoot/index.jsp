@@ -16,41 +16,68 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/default.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_956203_hmjb6zplhjn.css">
   <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="http://cdn.bootcss.com/jqueryui/1.11.0/jquery-ui.min.js"></script>
   </head>
   
   <body>
-    <form>
-      <div id="particles-js">
-      <div class="login">
-        <div class='error'>您的用户名或者密码不正确,请重新输入</div>
-        <div class="login-top">
-          登录
+  <div class='login'>
+    <div class='login_title'>
+      <span>旅店管理系统登录</span>
+    </div>
+    <div class='login_fields'>
+      <div class='login_fields__user'>
+        <div class='icon'>
+          <img src='img/user_icon_copy.png'>
         </div>
-        <div class="login-center clearfix">
-          <div class="login-center-img"><img src="img/name.png"/></div>
-          <div class="login-center-input">
-            <input type="text" name="user" value="" placeholder="请输入您的用户名" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的用户名'"/>
-            <div class="login-center-input-text">用户名</div>
+        <input placeholder='用户名' type='text' id="username">
+          <div class='validation'>
+            <img src='img/tick.png'>
           </div>
+        </input>
+      </div>
+      <div class='login_fields__password'>
+        <div class='icon'>
+          <img src='img/lock_icon_copy.png'>
         </div>
-        <div class="login-center clearfix">
-          <div class="login-center-img"><img src="img/password.png"/></div>
-          <div class="login-center-input">
-            <input type="password" name="pwd" value="" placeholder="请输入您的密码" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的密码'"/>
-            <div class="login-center-input-text">密码</div>
-          </div>
-        </div>
-        <div class="login-button">
-          登录
+        <input placeholder='密码' type='password' id="password">
+        <div class='validation'>
+          <img src='img/tick.png'>
         </div>
       </div>
-      <div class="sk-rotating-plane"></div>
+      <div class='login_fields__submit'>
+        <input type='submit' value='登录' id="ok">
+        <div class='forgot'>
+          <a href='#'>忘记密码?</a>
+        </div>
+      </div>
     </div>
-    </form>
-  <script src="js/particles.min.js"></script>
-  <script src="js/app.js"></script>
-  <script type="text/javascript" src="js/login.js"></script>
+     <div class='error'>
+      <h2>验证失败</h2>
+      <a href="index.jsp">请重新登录!</a>
+    </div>
+    <div class='success'>
+      <h2>验证成功</h2>
+      <%  
+        if(session.getAttribute("un") != null){
+      %>
+      <p>欢迎登录~<%=session.getAttribute("un")%></p>
+      <%}%>
+      <h3 class="mainJsp">进入首页</h3>
+    </div>
+    <div class='disclaimer'>
+      <p>旅店管理系统是一个...........</p>
+    </div>
+  </div>
+  <div class='authent'>
+    <img src='img/puff.svg'>
+    <p>正在验证,请稍等</p>
+  </div>
+  <script type="text/javascript" src='js/stopExecutionOnTimeout.js?t=1'></script>
   </body>
+  <script type="text/javascript" src="js/login.js"></script>
 </html>
