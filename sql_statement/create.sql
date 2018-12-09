@@ -161,6 +161,7 @@ on orders.customerIDCard = customers.customerIDCard
 --select * from timeExtensionOrdersView
 
 --创建订单视图
+drop view orderview
 create view orderview
 as
 select top 100 percent
@@ -255,7 +256,7 @@ BEGIN
 	END
 --测试存储过程（解决视图选择问题）
 declare @Type varchar(25),@para varchar(25)
-set @Type = 'totalMoney'
-set @para = '3'
+set @Type = 'customerName'
+set @para = '肖'
 exec ChooseSearchInfo @para,@Type
 

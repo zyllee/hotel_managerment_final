@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -35,15 +36,17 @@ public class SearchInfoServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		//³õÊ¼»¯
+		//åˆå§‹åŒ–
 		String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 		String url = "jdbc:sqlserver://localhost:1433;Database=hotel_db";
 		String user = "sa";
 		String pwd = "160510111xyj";
-		String orderProperty = request.getParameter("orderProperty");//»ñÈ¡²éÑ¯¶©µ¥µÄÀà±ğ
+		String orderProperty = request.getParameter("orderProperty");//è·å–æŸ¥è¯¢è®¢å•çš„ç±»åˆ«
 		String SearchInfo = request.getParameter("SearchInfo");
+		SearchInfo = URLDecoder.decode(SearchInfo,"utf-8");
 		System.out.println(orderProperty);
-		String sql_order = "declare @Type varchar(25),@para varchar(25) set @Type = '"+orderProperty+"' set @para = '"+SearchInfo+"' exec ChooseSearchInfo @para,@Type";//¶©µ¥ÊÓÍ¼²éÑ¯Óï¾ä
+		System.out.println(SearchInfo);
+		String sql_order = "declare @Type varchar(25),@para varchar(25) set @Type = '"+orderProperty+"' set @para = '"+SearchInfo+"' exec ChooseSearchInfo @para,@Type";//è®¢å•è§†å›¾æŸ¥è¯¢è¯­å¥
 		Connection conn = null;
 		try {
 			Class.forName(driverName);

@@ -13,7 +13,6 @@
 		.container {
 			width: 100%;
 			height: 50px;
-			background: rgba(128, 0, 128,.8);
 			position: relative;
 			margin: 0 auto;
 			display: flex;
@@ -21,6 +20,7 @@
 			justify-content: space-around;
 			align-items: center;
 			cursor: pointer;
+			background: purple;
 			color: white;
 		}
 		.pay_list_c1 {
@@ -57,7 +57,10 @@
 			top: 30%;
 			transform: translate(-50%,30%);
 			border: 1px solid gray;
+<<<<<<< HEAD
 			background: rgba(128, 0, 128, .5);
+=======
+>>>>>>> xiaoyujie
 			position: relative;
 			cursor: pointer;
 		}
@@ -67,7 +70,7 @@
 			outline: none;
 			border: none;
 			border-radius: 50px;
-			font-size: 25px;
+			font-size: 20px;
 			margin: 0 auto;
 			display: block;
 		}
@@ -84,62 +87,108 @@
         <div class="items">
         	<span>姓名</span>
             <span class="pay_list_c1 on">
-				<input type="radio" name="orderProperty" value="customerName" class="radioclass">
+				<input type="radio" value="customerName" class="radioclass">
 			</span>
         </div>
         <div class="items">
         	<span>房间号</span>
             <span class="pay_list_c1">
-				<input type="radio" name="orderProperty" value="roomNumber" class="radioclass">
+				<input type="radio" value="roomNumber" class="radioclass">
 			</span>
         </div>
         <div class="items">
         	<span>房间类型</span>
             <span class="pay_list_c1">
-				<input type="radio"  name="orderProperty" value="roomType" class="radioclass">
+				<input type="radio"  value="roomType" class="radioclass">
 			</span>
         </div>
         <div class="items">
         	<span>预订时间</span>
             <span class="pay_list_c1">
-				<input type="radio"  name="orderProperty" value="orderTime" class="radioclass">
+				<input type="radio"  value="orderTime" class="radioclass">
 			</span>
         </div>
         <div class="items">
         	<span>入住时间</span>
             <span class="pay_list_c1">
-				<input type="radio"  name="orderProperty" value="checkInTime" class="radioclass">
+				<input type="radio"  value="checkInTime" class="radioclass">
 			</span>
         </div>
         <div class="items">
         	<span>退房时间</span>
             <span class="pay_list_c1">
-				<input type="radio" name="orderProperty" value="checkOutTime" class="radioclass">
+				<input type="radio" value="checkOutTime" class="radioclass">
 			</span>
         </div>
         <div class="items">
         	<span>联系方式</span>
             <span class="pay_list_c1">
-				<input type="radio"  name="orderProperty" value="customerPhoneNumber" class="radioclass">
+				<input type="radio"  value="customerPhoneNumber" class="radioclass">
 			</span>
         </div>
         <div class="items">
         	<span>总金额</span>
             <span class="pay_list_c1">
-				<input type="radio"  name="orderProperty" value="totalMoney" class="radioclass">
+				<input type="radio" value="totalMoney" class="radioclass">
 			</span>
         </div>
     </div>
 
     <div class="search-button">
-    	<input type="text" >
+    	<input type="text" id="search" placeholder="">
     </div>
 </body>
 <script type="text/javascript">
 	$(function() {
-	    $(".pay_list_c1").on("click", function() {
-	        $(this).addClass("on").parents('.items').siblings('.items').find('.pay_list_c1').removeClass("on");
-	    });
+		var $search = $("#search");
+	    var inputValue,selectValue = "customerName";
+		function init(){
+			$search.attr('placeholder', '请输入姓名');
+			$(".pay_list_c1").on("click", function() {
+		    	selectValue = $(this).find('input').val();
+		        $(this).addClass("on").parents('.items').siblings('.items').find('.pay_list_c1').removeClass("on");
+		        var $placeholderContent = $(this).siblings('span').text();
+		        console.log($placeholderContent);
+		        $search.attr('placeholder', "请输入" + $placeholderContent);
+	    	});
+		}
+	    function getData(){
+	    	$search.on('input', function(event) {
+	    		inputValue = $(this).val();
+	    		throttle(processGet);
+	    	});
+	    }
+
+	   function throttle(method, context) {
+          context = context || window;
+          //用tId清除定时器
+          clearTimeout(method.tId);
+          //然后继续产生这个定时器
+          method.tId = setTimeout(function() {
+              //让执行上下文(这里是window)调用一下method ===>即这里的proccess
+              method.call(context); //相当于window.proccess();
+          }, 800);
+      	}
+
+      	function processGet(){
+
+      		$.ajax({
+      			url: 'SearchInfoServlet',
+      			type: 'get',
+      			dataType: 'json',
+      			data: {
+      				'orderProperty': selectValue,
+      				'SearchInfo': inputValue
+      			}
+      		})
+      		.done(function(data) {
+      			console.log(data);
+      		})
+      		.fail(function(e) {
+      			console.log(e.status);
+      		})
+      	}
+
 
 	});
 </script>
