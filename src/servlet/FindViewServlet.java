@@ -87,7 +87,6 @@ public class FindViewServlet extends HttpServlet {
 						Date checkOutTime = rs.getDate("checkOutTime");
 						String customerPhoneNumber = rs.getString("customerPhoneNumber");
 						int totalMoney = rs.getInt("totalMoney");
-						String roomUrl = rs.getString("roomUrl");
 						orderViewBean orderView = new orderViewBean();
 						orderView.setOrderNumber(orderNumber);
 						orderView.setOrderStatus(orderStatus);
@@ -99,7 +98,6 @@ public class FindViewServlet extends HttpServlet {
 						orderView.setCustomerPhoneNumber(customerPhoneNumber);
 						orderView.setCustomerName(customerName);
 						orderView.setTotalMoney(totalMoney);
-						orderView.setRoomUrl(roomUrl);
 						list.add(orderView);
 					}
 					request.setAttribute("list",list);
