@@ -123,11 +123,68 @@ begin
 end
 
 -- 创建收入视图
+drop view incomeView
 create view incomeView
 as
 -- 选择退房时间，总金额，订单数量
 select checkOutTime, sum(totalMoney) totalIncome, count(*) num from orders 
 group by checkOutTime
+--测试收入视图
+--select * from incomeView
+
+--创建房间信息视图
+create view roomInfoView
+as
+select top 100 percent room.*,rp.price
+from room join roomTypeAndPrice as rp 
+on room.roomType = rp.roomType
+order by rp.price desc
+--测试房间信息视图
+--select * from roomInfoView
+
+--创建续费订单视图
+create 	view timeExtensionOrdersView
+as 
+select
+	timeExtension.orderNumber,
+	customers.customerName,
+	customers.customerPhoneNumber,
+	orders.roomNumber,
+	orders.checkInTime,
+	timeExtension.oldExpiryDate,
+	timeExtension.newExpiryDate,
+	timeExtension.addMoney
+from timeExtension inner join orders
+on timeExtension.orderNumber = orders.orderNumber inner join customers
+on orders.customerIDCard = customers.customerIDCard
+--测试续费订单视图
+--select * from timeExtensionOrdersView
+
+--创建订单视图
+drop view orderview
+create view orderview
+as
+select top 100 percent
+	orders.orderNumber,
+	orders.orderStatus,
+	customers.customerName,
+    room.roomNumber,
+    room.roomType,
+    orders.orderTime,
+    orders.checkInTime,
+    orders.checkOutTime,
+    customers.customerPhoneNumber,
+    orders.totalMoney,
+    room.roomUrl
+from orders inner join customers
+on orders.customerIDCard = customers.customerIDCard
+inner join room
+on orders.roomNumber = room.roomNumber
+inner join roomTypeAndPrice
+on room.roomType = roomTypeAndPrice.roomType
+order by orders.orderNumber desc
+--测试订单视图
+select * from orderview
 
 --存储过程（解决续住问题）
 SET ANSI_NULLS ON
@@ -162,4 +219,44 @@ BEGIN
 	set @newExpiryTime = DATEADD(DAY,@addDay,@oldExpiryTime)
 END
 GO
+--存储过程（解决续住问题）
+declare @addMoney int,@orderNumber int,@oldExpiryTime date,@newExpiryTime date
+exec dbo.getPrice '1002',3,@addMoney output,@orderNumber output,@oldExpiryTime output,@newExpiryTime output
+select @addMoney as addMoney,@orderNumber as orderNumber,@oldExpiryTime as oldExpiryTime,@newExpiryTime as newExpiryTime
+
+
+存储过程（解决订单视图查询选择）
+USE [hotel_db]
+GO
+/****** Object:  StoredProcedure [dbo].[showView]    Script Date: 12/06/2018 21:41:54 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create PROCEDURE [dbo].[ChooseSearchInfo](
+	@para varchar(25),
+	@Type varchar(25)
+)
+AS
+BEGIN
+	if @Type = 'customerName'
+		select * from orderView where customerName like '%'+@para+'%'
+	else if @Type = 'roomNumber'
+		select * from orderView where roomNumber like '%'+@para+'%'
+	else if @Type = 'roomType'
+		select * from orderview where roomType like '%'+@para+'%'
+	else if @Type = 'orderTime'
+		select * from orderview where checkInTime like '%'+@para+'%'
+	else if @Type = 'checkOutTime'
+		select * from orderview where checkOutTime like '%'+@para+'%'
+	else if @Type = 'customerPhoneNumber'
+		select * from orderview where customerPhoneNumber like '%'+@para+'%'
+	else if @Type = 'totalMoney'
+		select * from orderview where totalMoney like '%'+@para+'%'
+	END
+--测试存储过程（解决视图选择问题）
+declare @Type varchar(25),@para varchar(25)
+set @Type = 'customerName'
+set @para = '肖'
+exec ChooseSearchInfo @para,@Type
 

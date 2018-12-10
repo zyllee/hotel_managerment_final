@@ -1,61 +1,139 @@
 $(function() {
-  var $login = $(".login-button");
-  $login.on('click', function(event) {
-    addClass(document.querySelector(".login"), "active");
+  $('input[type="submit"]').click(function() {
+    var username = $("#username").val();
+    var password = $("#password").val();
+    $('.login').addClass('test');
     setTimeout(function() {
-      addClass(document.querySelector(".sk-rotating-plane"), "active")
-      document.querySelector(".login").style.display = "none";
-    }, 800);
-    login();
-  });
+      $('.login').addClass('testtwo');
+    }, 300);
+    setTimeout(function() {
+      $('.authent').show().animate({
+        right: -320
+      }, {
+        easing: 'easeOutQuint',
+        duration: 600,
+        queue: false
+      });
+      $('.authent').animate({
+        opacity: 1
+      }, {
+        duration: 200,
+        queue: false
+      }).addClass('visible');
+    }, 500);
 
-  function login() {
-    var $user = $("input[type=user]").val();
-    var $pwd = $("input[type=pwd]").val();
     $.ajax({
         url: 'loginServlet',
         type: 'post',
         dataType: 'text',
         data: {
-          'user': $user,
-          'pwd': $pwd
+          'user': username,
+          'pwd': password
         }
       })
       .done(function(data) {
-        console.log(data);
-        success();
+        if ($.trim(data) == "true") {
+          console.log('成功');
+          processLogin();
+        } else {
+          errorLogin();
+          console.log('失败');
+        }
       })
-      .fail(function(e) {
-        console.log(e.status);
+      .fail(function() {
+        console.log("error");
       })
-  }
 
-  function success() {
-    removeClass(document.querySelector(".login"), "active");
-    removeClass(document.querySelector(".sk-rotating-plane"), "active");
-    document.querySelector(".login").style.display = "block";
-    alert("登录成功");
-  }
+    function errorLogin() {
+      setTimeout(function() {
+        $('.authent').show().animate({
+          right: 90
+        }, {
+          easing: 'easeOutQuint',
+          duration: 600,
+          queue: false
+        });
+        $('.authent').animate({
+          opacity: 0
+        }, {
+          duration: 200,
+          queue: false
+        }).addClass('visible');
+        $('.login').removeClass('testtwo');
+      }, 1000);
 
-  function hasClass(elem, cls) {
-    cls = cls || '';
-    if (cls.replace(/\s/g, '').length == 0) return false; //当cls没有参数时，返回false
-    return new RegExp(' ' + cls + ' ').test(' ' + elem.className + ' ');
-  }
-
-  function addClass(ele, cls) {
-    if (!hasClass(ele, cls)) {
-      ele.className = ele.className == '' ? cls : ele.className + ' ' + cls;
+      //主要是这两个处理登录的结果
+      setTimeout(function() {
+        $('.login').removeClass('test');
+        $('.login div').fadeOut(123);
+      }, 1000);
+      setTimeout(function() {
+        $('.error').fadeIn();
+      }, 1000);
     }
-  }
 
-  function removeClass(ele, cls) {
-    if (hasClass(ele, cls)) {
-      var newClass = ' ' + ele.className.replace(/[\t\r\n]/g, '') + ' ';
-      while (newClass.indexOf(' ' + cls + ' ') >= 0) {
-        newClass = newClass.replace(' ' + cls + ' ', ' ');
-      }
-      ele.className = newClass.replace(/^\s+|\s+$/g, '');
+    function processLogin() {
+      var $mainJsp = $(".mainJsp");
+      $mainJsp.on('click', function(event) {
+        window.location = "welcome.jsp";
+      });
+      setTimeout(function() {
+        $('.authent').show().animate({
+          right: 90
+        }, {
+          easing: 'easeOutQuint',
+          duration: 600,
+          queue: false
+        });
+        $('.authent').animate({
+          opacity: 0
+        }, {
+          duration: 200,
+          queue: false
+        }).addClass('visible');
+        $('.login').removeClass('testtwo');
+      }, 1000);
+
+      //主要是这两个处理登录的结果
+      setTimeout(function() {
+        $('.login').removeClass('test');
+        $('.login div').fadeOut(123);
+      }, 1000);
+      setTimeout(function() {
+        $('.success').fadeIn();
+      }, 1000);
     }
-  }
+
+  });
+  $('input[type="text"],input[type="password"]').focus(function() {
+    $(this).prev().animate({
+      'opacity': '1'
+    }, 200);
+  });
+  $('input[type="text"],input[type="password"]').blur(function() {
+    $(this).prev().animate({
+      'opacity': '.5'
+    }, 200);
+  });
+  $('input[type="text"],input[type="password"]').keyup(function() {
+    if (!$(this).val() == '') {
+      $(this).next().animate({
+        'opacity': '1',
+        'right': '30'
+      }, 200);
+    } else {
+      $(this).next().animate({
+        'opacity': '0',
+        'right': '20'
+      }, 200);
+    }
+  });
+  var open = 0;
+  $('.tab').click(function() {
+    $(this).fadeOut(200, function() {
+      $(this).parent().animate({
+        'left': '0'
+      });
+    });
+  });
 });
