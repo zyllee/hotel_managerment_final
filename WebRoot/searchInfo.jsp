@@ -20,20 +20,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       height: 100%;
       font-size: 14px;
     }
+    .main-left {
+      float: left;
+      width: 20%;
+      height: 100%;
+      position: relative;
+      left: 5%;
+    }
+    .main-left .title {
+      position: absolute; 
+      left: 20%;
+      top: 12px;
+    }
     .container {
       width: 200px;
       border: .4px solid rgba(0, 0, 0, .5);
       position: absolute;
-      left: 10%;
-      top: 30%;
-      transform: translate(-10%, -30%);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       border-radius: 5px;
       box-shadow: .5px .5px 3px gray;
       cursor: pointer;
     }
     .container .items {
       width: 100%;
-      line-height: 40px;
+      line-height: 30px;
       position: relative;
       border-bottom: .3px solid rgba(0, 0, 0, .5);
     }
@@ -51,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       border-color: purple transparent transparent transparent;
       position: absolute;
       left: 25px;
-      top: 16px;
+      top: 12px;
     }
     .items .content {
       margin-left: 50px;
@@ -67,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       position: absolute;
       display: block;
       left: -28px;
-      top: 11.5px;
+      top: 6.5px;
     }
     .on {
       background: url('img/inputradio.gif') no-repeat -3px 0;
@@ -77,14 +89,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     .search-button{
       width: 500px;
-      height: 45px;
+      height: 25px;
       background: white;
-      border-radius: 50px;
+      border-radius: 25px;
       left: 50%;
-      top: 30%;
-      transform: translate(-50%,30%);
+      top: 2%;
+      transform: translate(-50%,0%);
       border: 1px solid gray;
-      position: relative;
+      position: absolute;
       cursor: pointer;
     }
     .search-button input {
@@ -102,18 +114,62 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       background: rgba(128, 0, 128, .05);
     }
 
+    .main-right {
+      width: 72%;
+      float: right;
+      position: relative;
+    }
+    .main-right {
+      margin-top: 75px;
+    }
+    .main-right .orderData {
+      width: 85%;
+      height: 120px;
+      position: relative;
+    }
+    .main-right .orderData:nth-child(odd) {
+    }
+    .main-right .orderData:not(:first-child) {
+    }
 
+    .orderData .order-img {
+      width: 18%;
+      height: 75%;
+      background: url('img/th.jpg') no-repeat 0 0;
+      background-size: cover;
+      display: block;
+      float: left;
+      border-radius: 3px;
+      position: relative;
+    }
+
+    .orderData .order-detail {
+      width: 75%;
+      height: 100%;
+      float: left;
+    }
+    .space {
+      width: 100%;
+      height: 1px;
+      background: purple;
+      position: absolute;
+      bottom: 14px;
+      left: 0;
+    }
   </style>
     <script type="text/javascript" src="js/jquery.js"></script>
 </head>
 
 <body id="body">
+  <div class="main-left">
+    <h2 class="title">订单查询</h2>
     <div class="container">
       <div class="items">
         <span class="triangle"></span>
         <span class="items-word">姓名</span>
         <div class="content">
-          <i class="radio"><input type="radio" value="customerName"></i><span></span>姓名
+          <i class="radio"><input type="radio" value="customerName"></i>
+          <span>姓名</span>
         </div>
       </div>
       <div class="items">
@@ -160,11 +216,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
       </div>
     </div>
+  </div>
     
     <div class="search-button">
       <input type="text" id="search" placeholder="">
     </div>
     
+   <div class="main-right">
+      <div class="orderData">
+          <div class="order-img"></div>
+          <div class="order-detail">
+            
+          </div>
+          <div class="space"></div>
+      </div>
+      <div class="orderData">
+        <div class="order-img"></div>
+          <div class="order-detail">
+            
+          </div>
+          <div class="space"></div>
+      </div>
+      <div class="orderData">
+        <div class="order-img"></div>
+          <div class="order-detail">
+            
+          </div>
+          <div class="space"></div>
+      </div>
+      <div class="orderData">
+        <div class="order-img"></div>
+          <div class="order-detail">
+            
+          </div>
+          <div class="space"></div>
+      </div>
+   </div>
+
 
 </body>
 <script type="text/javascript">
