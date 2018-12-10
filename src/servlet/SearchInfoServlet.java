@@ -65,6 +65,7 @@ public class SearchInfoServlet extends HttpServlet {
 					String checkInTime = rs.getString("checkInTime");
 					String checkOutTime = rs.getString("checkOutTime");
 					String customerPhoneNumber = rs.getString("customerPhoneNumber");
+					String totalMoney = rs.getString("totalMoney");
 					Map e = new HashMap();
 					e.put("orderNumber", orderNumber);
 					e.put("orderStatus",orderStatus);
@@ -75,6 +76,7 @@ public class SearchInfoServlet extends HttpServlet {
 					e.put("checkInTime",checkInTime);
 					e.put("checkOutTime",checkOutTime);
 					e.put("customerPhoneNumber",customerPhoneNumber);
+					e.put("totalMoney",totalMoney);
 					list.add(e);
 				}
 				JSONArray json = JSONArray.fromObject(list);
