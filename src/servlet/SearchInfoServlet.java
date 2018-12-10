@@ -2,28 +2,26 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.text.DateFormat;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.crypto.Data;
 
 import net.sf.json.JSONArray;
 
-
-import com.sun.corba.se.pept.transport.Connection;
-
-public class SearchByTime extends HttpServlet {
+public class SearchInfoServlet extends HttpServlet {
 
 	/**
 	 * The doGet method of the servlet. <br>
@@ -37,49 +35,56 @@ public class SearchByTime extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		String DriverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+		//初始化
+		String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 		String url = "jdbc:sqlserver://localhost:1433;Database=hotel_db";
 		String user = "sa";
 		String pwd = "160510111xyj";
-		String checkinTime = request.getParameter("checkInTime");
-		String checkOutTime = request.getParameter("checkOutTime");
-//		try {
-//			java.util.Date checkInDate = fmt.parse(checkinTime);
-//			java.util.Date checkOutDate = fmt.parse(checkOutTime);
-//		} catch (ParseException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-		String sql = "select room.roomType,roomTypeAndPrice.price,room.roomNumber,room.roomUrl from room inner join roomTypeAndPrice on room.roomType = roomTypeAndPrice.roomType where roomNumber not in (select orders.roomNumber from orders where((orders.checkInTime  between '"+checkinTime+"' and '"+checkOutTime+"')) or ((orders.checkOutTime between '"+checkinTime+"' and '"+checkOutTime+"')))";
-		java.sql.Connection conn;
+		String orderProperty = request.getParameter("orderProperty");//获取查询订单的类别
+		String SearchInfo = request.getParameter("SearchInfo");
+		SearchInfo = URLDecoder.decode(SearchInfo,"utf-8");
+		System.out.println(orderProperty);
+		System.out.println(SearchInfo);
+		String sql_order = "declare @Type varchar(25),@para varchar(25) set @Type = '"+orderProperty+"' set @para = '"+SearchInfo+"' exec ChooseSearchInfo @para,@Type";//订单视图查询语句
+		Connection conn = null;
 		try {
-			Class.forName(DriverName);
+			Class.forName(driverName);
 			try {
 				conn = DriverManager.getConnection(url,user,pwd);
-				PreparedStatement ps = conn.prepareStatement(sql);
-				ResultSet rs = ps.executeQuery();
+				Statement st = conn.createStatement();
+				ResultSet rs = st.executeQuery(sql_order);
 				List<Map> list = new ArrayList<Map>();
- 				while(rs.next()){
-					String roomType = rs.getString("roomType");
+				while(rs.next()){
+					String orderNumber = rs.getString("orderNumber");
+					String orderStatus = rs.getString("orderStatus");
+					String customerName = rs.getString("customerName");
 					String roomNumber = rs.getString("roomNumber");
-					String price = rs.getString("price");
-					String roomUrl = rs.getString("roomUrl");
-//					Map<String,String> e = new HashMap();
+					String roomType = rs.getString("roomType");
+					String orderTime = rs.getString("orderTime");
+					String checkInTime = rs.getString("checkInTime");
+					String checkOutTime = rs.getString("checkOutTime");
+					String customerPhoneNumber = rs.getString("customerPhoneNumber");
 					Map e = new HashMap();
-					e.put("roomType", roomType);
+					e.put("orderNumber", orderNumber);
+					e.put("orderStatus",orderStatus);
+					e.put("customerName",customerName);
 					e.put("roomNumber",roomNumber);
-					e.put("price", price);
-					e.put("roomUrl", roomUrl);
+					e.put("roomType",roomType);
+					e.put("orderTime",orderTime);
+					e.put("checkInTime",checkInTime);
+					e.put("checkOutTime",checkOutTime);
+					e.put("customerPhoneNumber",customerPhoneNumber);
 					list.add(e);
 				}
 				JSONArray json = JSONArray.fromObject(list);
 				out.print(json);
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -97,7 +102,7 @@ public class SearchByTime extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-				doGet(request,response);
+		doGet(request, response);
 	}
 
 }
