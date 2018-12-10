@@ -81,11 +81,10 @@ h2{
 }
 .content{
 	width: 830px;
-	height: 400px;
 	position: absolute;
 	left: 465px;
 	top: 95px;
-	font-size: 17px;
+	font-size: 15px;
 	font-weight: bold;
 }
 .line{
@@ -130,7 +129,6 @@ h2{
 }
 .content2{
 	display: none;
-	height: 550px;
 	top: 75px;
 }
 .content2 h4:nth-child(n+2){
@@ -153,5 +151,55 @@ h2{
 	width: 200px;
 }
 .reserve_num{
+	width: 200px;
+}
+
+.ex_num{
+	width: 150px;
+	margin-left: 20px;
+}
+.ex_days{
+	width: 150px;
+	margin-left: 35px;
+}
+.price{
+	width: 150px;
+	height: 40px;
+	margin-top: 17px;
+	margin-left: 25px;
+	border: none;
+	border-bottom: 1.1px solid #DDDDDD;
+}
+.sure1{
+	float: left;
+}
+.submit{
+	float: left;
+	margin-left: 30px;
+}
+.content1 h4{
+	font-size: 17px;
+}
+.content1 .title1{
+	margin-top: 20px;
+}
+.title1 h5{
+	float: left;
+	font-size: 15px;
+	margin-right: 145px;
+}
+.order_num{
+	width: 110px;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+.content3{
+	margin-top: 30px;
+	display: none;
+}
+.newExpiryTime{
+	width: 200px;
+}
+.oldExpiryTime{
 	width: 200px;
 }
