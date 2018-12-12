@@ -34,12 +34,12 @@ public class getPriceServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
-		//初始化
+
 		String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 		String url = "jdbc:sqlserver://localhost:1433;Database=hotel_db";
 		String user = "sa";
 		String pwd = "160510111xyj";
-		//获取参数
+		
 		String roomNumber = request.getParameter("roomNumber");
 		String addDay = request.getParameter("addDay");
 		String sql = "declare @addMoney int,@orderNumber int,@oldExpiryTime date,@newExpiryTime date exec dbo.getPrice '"+roomNumber+"',"+addDay+",@addMoney output,@orderNumber output,@oldExpiryTime output,@newExpiryTime output select @addMoney as addMoney,@orderNumber as orderNumber,@oldExpiryTime as oldExpiryTime,@newExpiryTime as newExpiryTime";
@@ -64,6 +64,7 @@ public class getPriceServlet extends HttpServlet {
 					list.add(e);
 				}
 				JSONArray json = JSONArray.fromObject(list);
+				System.out.println(json);
 				out.print(json);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
