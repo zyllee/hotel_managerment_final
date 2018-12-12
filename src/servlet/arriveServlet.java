@@ -23,13 +23,13 @@ public class arriveServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
-		//³õÊ¼»¯
+		//ï¿½ï¿½Ê¼ï¿½ï¿½
 		String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 		String url = "jdbc:sqlserver://localhost:1433;Database=hotel_db";
 		String user = "sa";
 		String pwd = "160510111xyj";
 		String customerIDCard = request.getParameter("customerIDCard");
-		String sql_leave = "update orders set orderStatus = 'ÒÑÈë×¡' where orders.customerIDCard = '"+customerIDCard+"'";
+		String sql_leave = "update orders set orderStatus = 'å·²å…¥ä½' where orders.customerIDCard = '"+customerIDCard+"'";
 		String sql_query = "select * from orders where customerIDCard = '"+customerIDCard+"'";
 		Connection conn = null;
 		try {
@@ -38,7 +38,7 @@ public class arriveServlet extends HttpServlet {
 				conn = DriverManager.getConnection(url,user,pwd);
 				Statement st = conn.createStatement();
 				st.execute(sql_leave);
-				System.out.print("Èë×¡³É¹¦!");
+				System.out.print("ï¿½ï¿½×¡ï¿½É¹ï¿½!");
 				ResultSet rs = st.executeQuery(sql_query);
 				List<Map> list = new ArrayList<Map>();
  				while(rs.next()){
