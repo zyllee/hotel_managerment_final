@@ -86,10 +86,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     					// console.log(data);
     				    price = data[0].price;
                         roomNumber =data[0].roomNumber;
-                        roomUrl = data[0].roomUrl;
                         console.log(roomNumber);
                         console.log(price);
-                        console.log(roomUrl);
                     }
     			});
     		});
