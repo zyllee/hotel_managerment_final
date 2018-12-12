@@ -88,10 +88,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     }
     
     .search-button{
-      width: 500px;
+      width: 300px;
       height: 25px;
       background: white;
-      border-radius: 25px;
+      /* border-radius: 25px; */
       left: 50%;
       top: 2%;
       transform: translate(-50%,0%);
@@ -234,8 +234,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     .other {
       display: none;
     }
+    .search-icon {
+      position: absolute;
+      top: 4.5px;
+      right: 5px;
+      color: white;
+    }
+    .enterSearch {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 30px;
+      background: purple;
+    }
   </style>
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_956203_nnf0jf3nqpj.css">
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_956203_4587c5y6xnk.css">
     <script type="text/javascript" src="js/jquery.js"></script>
 </head>
 
@@ -299,6 +313,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     <div class="search-button">
       <input type="text" id="search" placeholder="">
+      <div class="enterSearch">
+        <i class="iconfont icon-sousuo2 search-icon"></i>
+      </div>
     </div>
     
    <div class="main-right"></div>
@@ -318,13 +335,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       $search.attr('placeholder', '请输入姓名');
       $(".radio").on("click", function() {
             selectValue = $(this).find('input').val();
-
             var $placeholderContent = $(this).siblings('span').text();
             console.log($placeholderContent);
             $search.attr('placeholder', "请输入" + $placeholderContent);
         });
       $(".main-right").on('click', '.details', function(event) {
-        $(".other").show();
+        $(this).parents('.orderData').find('.other').show();
+      });
+      $(".enterSearch").on('click', function(event) {
+        processGet();
+      });
+      $(document).on('keydown',  function(event) {
+        if(event.keyCode == 13) {
+          $(".enterSearch").trigger('click');
+        }
       });
     }
     function getData(){
@@ -362,7 +386,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
       })
       .done(function(data) {
-        $search.val("");
         processData(data);
       })
       .fail(function(e) {
@@ -391,7 +414,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     $radio.on('click', function(event) {
       $(this).addClass('on');
       $(this).parents('.content').siblings().find('i').removeClass('on');
-      $(this).parents('.items').siblings().find('.content i').removeClass('on');      
+      $(this).parents('.items').siblings().find('.content i').removeClass('on');
     });
   });
 </script>

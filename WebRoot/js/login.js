@@ -1,4 +1,9 @@
 $(function() {
+  document.onkeydown = function (e){
+      if(e.keyCode == 13) {
+        $('input[type="submit"]').trigger('click');
+      }
+  }
   $('input[type="submit"]').click(function() {
     var username = $("#username").val();
     var password = $("#password").val();
@@ -98,12 +103,11 @@ $(function() {
       setTimeout(function() {
         $('.login').removeClass('test');
         $('.login div').fadeOut(123);
-      }, 1000);
+      }, 800);
       setTimeout(function() {
         $('.success').fadeIn();
-      }, 1000);
+      }, 800);
     }
-
   });
   $('input[type="text"],input[type="password"]').focus(function() {
     $(this).prev().animate({
@@ -137,3 +141,8 @@ $(function() {
     });
   });
 });
+
+
+
+
+
