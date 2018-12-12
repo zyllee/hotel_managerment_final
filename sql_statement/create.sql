@@ -246,6 +246,8 @@ BEGIN
 	else if @Type = 'roomType'
 		select * from orderview where roomType like '%'+@para+'%'
 	else if @Type = 'orderTime'
+		select * from orderview where orderTime like '%'+@para+'%'
+	else if @Type = 'checkInTime'
 		select * from orderview where checkInTime like '%'+@para+'%'
 	else if @Type = 'checkOutTime'
 		select * from orderview where checkOutTime like '%'+@para+'%'
@@ -256,7 +258,7 @@ BEGIN
 	END
 --测试存储过程（解决视图选择问题）
 declare @Type varchar(25),@para varchar(25)
-set @Type = 'customerName'
+set @Type = ''
 set @para = '肖'
 exec ChooseSearchInfo @para,@Type
 
