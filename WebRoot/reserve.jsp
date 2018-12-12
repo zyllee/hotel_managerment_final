@@ -130,6 +130,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         roomNumber =data[0].roomNumber;
                         console.log(roomNumber);
                         console.log(price);
+<<<<<<< HEAD
 
                 
                     },
@@ -141,6 +142,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             $(".emptyRoomBox").append(empty);
                         });
 
+=======
+                    },
+                    error:function(e){
+                        console.log(e);
+>>>>>>> 58d73699a8fab45a54332101b4e1d053ee962dde
                     }
     			});
     		});
