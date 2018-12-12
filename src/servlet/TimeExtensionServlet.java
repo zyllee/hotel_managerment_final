@@ -32,12 +32,12 @@ public class TimeExtensionServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		//³õÊ¼»¯
+		//åˆå§‹åŒ–
 		String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 		String url = "jdbc:sqlserver://localhost:1433;Database=hotel_db";
 		String user = "sa";
 		String pwd = "160510111xyj";
-		//´«²Î
+		//è·å–æ•°æ®
 		String addMoney = request.getParameter("addMoney");
 		String orderNumber = request.getParameter("orderNumber");
 		String oldExpiryTime = request.getParameter("oldExpiryTime");
@@ -50,7 +50,7 @@ public class TimeExtensionServlet extends HttpServlet {
 				conn = DriverManager.getConnection(url,user,pwd);
 				Statement st = conn.createStatement();
 				st.execute(sql);
-				System.out.print("Ğø·Ñ³É¹¦£¡");
+				System.out.print("ç»­è´¹æˆåŠŸ");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

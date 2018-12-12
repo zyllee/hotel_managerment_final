@@ -55,27 +55,33 @@ public class SearchInfoServlet extends HttpServlet {
 				Statement st = conn.createStatement();
 				ResultSet rs = st.executeQuery(sql_order);
 				List<Map> list = new ArrayList<Map>();
-				while(rs.next()){
-					String orderNumber = rs.getString("orderNumber");
-					String orderStatus = rs.getString("orderStatus");
-					String customerName = rs.getString("customerName");
-					String roomNumber = rs.getString("roomNumber");
-					String roomType = rs.getString("roomType");
-					String orderTime = rs.getString("orderTime");
-					String checkInTime = rs.getString("checkInTime");
-					String checkOutTime = rs.getString("checkOutTime");
-					String customerPhoneNumber = rs.getString("customerPhoneNumber");
-					Map e = new HashMap();
-					e.put("orderNumber", orderNumber);
-					e.put("orderStatus",orderStatus);
-					e.put("customerName",customerName);
-					e.put("roomNumber",roomNumber);
-					e.put("roomType",roomType);
-					e.put("orderTime",orderTime);
-					e.put("checkInTime",checkInTime);
-					e.put("checkOutTime",checkOutTime);
-					e.put("customerPhoneNumber",customerPhoneNumber);
-					list.add(e);
+				if(rs.next()){
+					do{
+						String orderNumber = rs.getString("orderNumber");
+						String orderStatus = rs.getString("orderStatus");
+						String customerName = rs.getString("customerName");
+						String roomNumber = rs.getString("roomNumber");
+						String roomType = rs.getString("roomType");
+						String orderTime = rs.getString("orderTime");
+						String checkInTime = rs.getString("checkInTime");
+						String checkOutTime = rs.getString("checkOutTime");
+						String customerPhoneNumber = rs.getString("customerPhoneNumber");
+						String totalMoney = rs.getString("totalMoney");
+						Map e = new HashMap();
+						e.put("orderNumber", orderNumber);
+						e.put("orderStatus",orderStatus);
+						e.put("customerName",customerName);
+						e.put("roomNumber",roomNumber);
+						e.put("roomType",roomType);
+						e.put("orderTime",orderTime);
+						e.put("checkInTime",checkInTime);
+						e.put("checkOutTime",checkOutTime);
+						e.put("customerPhoneNumber",customerPhoneNumber);
+						e.put("totalMoney",totalMoney);
+						list.add(e);
+					}while(rs.next());
+				}else{
+					System.out.println("没有结果");
 				}
 				JSONArray json = JSONArray.fromObject(list);
 				out.print(json);
