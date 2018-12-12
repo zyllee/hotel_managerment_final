@@ -15,33 +15,54 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+	
+	<link rel="stylesheet" type="text/css" href="css/arrive.css">
+	
 	<script src="js/jquery.js"></script>
   </head>
   
   <body>
-    <form>
-        <ul class = "selectTime">
-            <li>入住时间:<input type = "date" name = "checkInTime"></li>
-            <li>离开时间:<input type = "date" name = "checkOutTime"></li>
-            <input type="button" value="确定" id="time">
-    </form>
-    <form>
-        渲染位置
-    </form>
-    <form>
-    	<ul>
-    		<li>身份证号：<input type = "text" name = "customerIDCard"></li>
-    		<li>性别:男<input type = "radio" name = "customerGender" value = "男" checked>  女<input type = "radio" name = "customerGender" value = "女"></li>
-    		<li>姓名：<input type = "text" name = "customerName" ></li>
-            <li>电话号码：<input type="text" name="customerPhoneNumber"></li>
-    		<li>备注：<input type = "text" name = "remarks" ></li>
-    		<li><input type = "button" value = "提交" id="info"><input type = "reset" value = "重置"> 
-    	</ul>
-    </form>
-    
+    <h2>订房</h2>
+    <div class="nav client_nav selected"><i class="user_icon"></i>填写信息</div>
+    <div class="nav finish"><i class="finish_icon"></i>订房完成</div>
+    <div class="client_nav_after"></div>
+    <div class="finish_after"></div>
+
+    <div class="content content4">
+      <h4>时间安排</h4>
+      <div class="line"></div>
+      入住时间<input type = "date" name = "checkInTime" class="box"><br>
+      离开时间<input type = "date" name = "checkOutTime" class="box">
+      <input type="button" value="确定" id="time" class="sure">
+
+      <h4>个人信息</h4>
+      <div class="line"></div>
+      身份证号<input type = "text" name = "customerIDCard" class="box"><br>
+      姓名<input type = "text" name = "customerName" class="box name">
+      性别 &nbsp; 男<input type = "radio" name = "customerGender" value = "男" checked>  
+           女<input type = "radio" name = "customerGender" value = "女"><br>
+      电话号码<input type="text" name="customerPhoneNumber" class="box"><br>
+      备注<input type = "text" name = "remarks" class="box bz"><br>
+      <div>
+        <input type = "reset" value = "重置" class="sure">
+        <input type = "button" value = "提交" id="info" class="sure">
+      </div>
+      
+    </div>
+
+    <div class="content content2">
+      <h3>恭喜您！ 订房成功！</h3>
+      <div class="line"></div>
+      <div class="title1">
+        <h5>入住时间</h5>
+        <h5>离开时间</h5>
+      </div>
+      <div style="clear: both">
+         <input type="text" class="box arriveTime" readonly="readonly">
+         <input type="text" class="box leaveTime" readonly="readonly">  
+      </div>
+    </div>
+ 
     <script>
     	$(function(){
     		var $submitTime = $("#time");//提交时间查看空房间
@@ -90,6 +111,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         console.log(roomNumber);
                         console.log(price);
                         console.log(roomUrl);
+                    },
+                    error:function(e){
+                        console.log(e);
                     }
     			});
     		});
@@ -121,7 +145,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         'roomNumber':roomNumber
                     },
                     success:function(data){
-                        console.log(data);
+                        //改变导航栏状态和content
+                        $(".client_nav").removeClass('selected');
+                        $(".client_nav_after").css("display","none");
+                        $(".finish").addClass('selected');
+                        $(".finish_after").css("display","block");
+                        $(".content4").css("display","none");
+                        $(".content2").css("display","block");
+                        $(".arriveTime").val(checkInDate);
+                        $(".leaveTime").val(checkOutDate);
+                    },
+                    error:function(e){
+                        console.log(e);
                     }
                 })
             });

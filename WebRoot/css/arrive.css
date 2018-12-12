@@ -203,3 +203,36 @@ h2{
 .oldExpiryTime{
 	width: 200px;
 }
+
+.content4{
+	top: 65px;
+}
+.content4 h4{
+	font-size: 17px;
+}
+.content4 h4:nth-child(n+2){
+	margin-top: 30px;
+}
+.content4 input{
+	margin-left: 15px;
+}
+.content4 .sure{
+	margin-left: 0;
+}
+.content4 div .sure{
+	float: left;
+	margin-right: 30px;
+}
+.name{
+	width: 150px;
+	margin-left: 45px!important;
+}
+.bz{
+	margin-left: 45px!important;
+}
+.arriveTime{
+	width: 185px;
+}
+.leaveTime{
+	width: 185px;
+}
