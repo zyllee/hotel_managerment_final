@@ -236,3 +236,16 @@ h2{
 .leaveTime{
 	width: 185px;
 }
+.reserveRoomNum{
+	width: 185px;
+}
+.reserveRoomType{
+	width: 185px;
+}
+.emptyRoomBox{
+	display: none;
+	margin-top: 20px;
+}
+.emptyRoomBox input:nth-child(1){
+	margin-top: 10px;
+}

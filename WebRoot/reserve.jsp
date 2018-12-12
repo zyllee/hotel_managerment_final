@@ -34,7 +34,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       入住时间<input type = "date" name = "checkInTime" class="box"><br>
       离开时间<input type = "date" name = "checkOutTime" class="box">
       <input type="button" value="确定" id="time" class="sure">
-
+      <div class="emptyRoomBox">
+          剩余空房间(请选择)<br><br>
+      </div>
+      
+      
       <h4>个人信息</h4>
       <div class="line"></div>
       身份证号<input type = "text" name = "customerIDCard" class="box"><br>
@@ -54,6 +58,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <h3>恭喜您！ 订房成功！</h3>
       <div class="line"></div>
       <div class="title1">
+        <h5>预定房间</h5>
+        <h5>房间类型</h5>
+      </div>
+      <div style="clear: both">
+        <input type="text" class="box reserveRoomNum" readonly="readonly">
+        <input type="text" class="box reserveRoomType" readonly="readonly">
+      </div>
+      <div class="title1">
         <h5>入住时间</h5>
         <h5>离开时间</h5>
       </div>
@@ -70,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             var checkInTime = $("input[name=checkInTime]");//入住时间
             var checkOutTime = $("input[name=checkOutTime]");//离开时间
             var customerIDCard;//身份证号
-            var customerGender;//性别
+            var customerGenderBox;//性别
             var customerName;//姓名
             var customerPhoneNumber;//电话号码
             var remarks;//备注
@@ -78,6 +90,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             var checkOutDate;//转格式后储存的变量
             var roomNumber;//房间号
             var price;//价格
+            var roomType;
             var roomUrl;//房间图片
             //转换格式（日期->字符串），以便插入数据库
             checkInTime.on('change', function(event) {
@@ -91,10 +104,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 checkOutDate = $(this).val();
                 console.log(checkOutDate);
             });
-            // console.log(checkInTime);
+            
             //提交查询的该时间范围内空房
     		$submitTime.on('click',function(){
-    			//console.log(checkInTime);
+                if(checkInDate == undefined || checkOutDate == undefined){
+                    alert("请选择时间！");
+                }else{
+                    $("#time").remove();
+                    $(".emptyRoomBox").css("display","block");
+                    $(".content4 h4").eq(1).css("marginTop","0");
+                }
+    			
     			$.ajax({
     				url:'SearchByTime',
     				type:'post',
@@ -104,31 +124,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         'checkOutTime':checkOutDate
     				},
     				success:function(data){
-    					// console.log(data);
-    				    price = data[0].price;
-                        roomNumber =data[0].roomNumber;
-                        roomUrl = data[0].roomUrl;
-                        console.log(roomNumber);
-                        console.log(price);
-                        console.log(roomUrl);
-                    },
-                    error:function(e){
-                        console.log(e);
+
+                        $.each(data,function(index,ele){
+                            var empty = $emptyRoom(index,ele);
+                            $(".emptyRoomBox").append(empty);
+                        });
                     }
     			});
     		});
             //提交个人数据插入表格
             $submitInfo.on('click', function() {
                 customerIDCard = $("input[name=customerIDCard]").val();//身份证号
-                customerGender = $("input[name=customerGender]").val();//性别
+                customerGenderBox = $("input[name=customerGender]");//性别
+                var customerGender;
+                for(var i=0;i<customerGenderBox.length; i++){
+                    if(customerGenderBox[i].checked == true){
+                        customerGender = customerGenderBox.eq(i).val();
+                    }
+                }
+                console.log(customerGender);
                 customerName = $("input[name=customerName]").val();//姓名
                 customerPhoneNumber = $("input[name=customerPhoneNumber]").val();//电话号码
                 remarks = $("input[name=remarks]").val();//备注
-                console.log(customerIDCard);
-                console.log(customerGender);
-                console.log(customerName);
-                console.log(customerPhoneNumber);
-                console.log(remarks);
+                var emptyCheckBox = $("input[name=emptyRoom]");//空房间
+                var emptyText;
+                for(var i=0; i<emptyCheckBox.length; i++){
+                    if(emptyCheckBox[i].checked == true){
+                        emptyText = emptyCheckBox.eq(i).val();
+                    }
+                }
+                var arr = emptyText.split(" ");
+                roomNumber = arr[1];
+                price = arr[5];
+                roomType = arr[6];
                 $.ajax({
                     url: 'checkinServlet',
                     type: 'post',
@@ -141,8 +169,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         'customerName':customerName,
                         'customerPhoneNumber':customerPhoneNumber,
                         'remarks':remarks,
+                        'roomNumber':roomNumber,
                         'price':price,
-                        'roomNumber':roomNumber
+                        'roomType':roomType
                     },
                     success:function(data){
                         //改变导航栏状态和content
@@ -152,15 +181,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         $(".finish_after").css("display","block");
                         $(".content4").css("display","none");
                         $(".content2").css("display","block");
+                        $(".reserveRoomNum").val(roomNumber);
+                        $(".reserveRoomType").val(roomType);
                         $(".arriveTime").val(checkInDate);
                         $(".leaveTime").val(checkOutDate);
-                    },
-                    error:function(e){
-                        console.log(e);
                     }
-                })
-            });
-    	});
+                });
+    	    });
+            function $emptyRoom(index,ele){
+                var $empty = $("<input type=\"radio\" name=\"emptyRoom\" "+
+        "value=\" "+(ele.roomNumber)+" "+(ele.price)+" "+(ele.roomType)+"\">"+ele.roomNumber+ele.roomType+" 价格："+ele.price+"元"+"<br><br>");
+                return $empty;  
+            }
+        });
     </script>
   </body>
 </html>
