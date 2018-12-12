@@ -20,20 +20,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       height: 100%;
       font-size: 14px;
     }
+    .main-left {
+      float: left;
+      width: 20%;
+      height: 100%;
+      position: relative;
+      left: 5%;
+    }
+    .main-left .title {
+      position: absolute; 
+      left: 20%;
+      top: 12px;
+    }
     .container {
       width: 200px;
       border: .4px solid rgba(0, 0, 0, .5);
       position: absolute;
-      left: 10%;
-      top: 30%;
-      transform: translate(-10%, -30%);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       border-radius: 5px;
       box-shadow: .5px .5px 3px gray;
       cursor: pointer;
     }
     .container .items {
       width: 100%;
-      line-height: 40px;
+      line-height: 30px;
       position: relative;
       border-bottom: .3px solid rgba(0, 0, 0, .5);
     }
@@ -51,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       border-color: purple transparent transparent transparent;
       position: absolute;
       left: 25px;
-      top: 16px;
+      top: 12px;
     }
     .items .content {
       margin-left: 50px;
@@ -67,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       position: absolute;
       display: block;
       left: -28px;
-      top: 11.5px;
+      top: 6.5px;
     }
     .on {
       background: url('img/inputradio.gif') no-repeat -3px 0;
@@ -77,14 +89,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     .search-button{
       width: 500px;
-      height: 45px;
+      height: 25px;
       background: white;
-      border-radius: 50px;
+      border-radius: 25px;
       left: 50%;
-      top: 30%;
-      transform: translate(-50%,30%);
+      top: 2%;
+      transform: translate(-50%,0%);
       border: 1px solid gray;
-      position: relative;
+      position: absolute;
       cursor: pointer;
     }
     .search-button input {
@@ -92,7 +104,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       height: 100%;
       outline: none;
       border: none;
-      border-radius: 50px;
       font-size: 20px;
       margin: 0 auto;
       display: block;
@@ -102,18 +113,142 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       background: rgba(128, 0, 128, .05);
     }
 
+    .main-right {
+      width: 72%;
+      float: right;
+      position: relative;
+    }
+    .main-right {
+      margin-top: 75px;
+    }
+    .main-right .orderData {
+      width: 85%;
+      height: 120px;
+      position: relative;
+    }
+   
+    .orderData .order-img {
+      width: 18%;
+      height: 75%;
+      background: url('img/th.jpg') no-repeat 0 0;
+      background-size: cover;
+      display: block;
+      float: left;
+      border-radius: 5px;
+      position: relative;
+    }
 
+    .orderData .order-detail {
+      width: 75%;
+      height: 100%;
+      float: left;
+      margin-left: 10px;
+    }
+    .space {
+      width: 100%;
+      height: 1px;
+      background: #039;
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+    }
+    .roomNumber span,.customerName span,.customerPhoneNumber span{
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .order-detail i {
+      color: purple;
+    }
+    .roomType span {
+      font-size: 18px;
+      font-weight: bold;
+      display: block;
+      margin-top: -8px;
+      margin-bottom: 5px;
+    }
+
+
+    .order-detail div:not(:last-child) {
+      border-bottom: .3px solid rgba(0, 0, 0, .1);
+    }
+    .price {
+      display:block;
+      width: 75px;
+      height: 30px;
+      margin-left: 15px;
+      background: rgba(128, 0, 128, .8);
+      position: relative;
+      margin-bottom: 5px;
+    }
+    .triangle2 {
+      width: 0;
+      height: 0;
+      border-width: 15px;
+      border-style: solid;
+      border-color: transparent rgba(128, 0, 128, .8) transparent transparent;
+      position: absolute;
+      top: 0;
+      left: -30px;
+    }
+    .price span {
+      position: absolute;
+      right: 5px;
+      top: 0;
+      color: white;
+      line-height: 30px;
+      text-align: center;
+    }
+    .price .circle {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+      position: absolute; 
+      top: 11px;
+      left: 0;
+    }
+    .orderData .details {
+      position: absolute;
+      right: 0;
+      bottom: 12px;
+      width: 90px;
+      height: 40px;
+      background: #E0E1E3;
+      outline: none;
+      border: none;
+      border-radius: 5px;
+      text-align: center;
+      font-weight: bold;
+      color: purple;
+      cursor: pointer;
+      font-size: 14px;
+      transition: .5s;
+    }
+    .orderData .details:hover {
+      background: black;
+      color: white;
+    }
+    .icon-icon {
+      font-size: 14px!important;
+    }
+    .other {
+      display: none;
+    }
   </style>
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_956203_nnf0jf3nqpj.css">
     <script type="text/javascript" src="js/jquery.js"></script>
 </head>
 
 <body id="body">
+  <div class="main-left">
+    <h2 class="title">订单查询</h2>
     <div class="container">
       <div class="items">
         <span class="triangle"></span>
         <span class="items-word">姓名</span>
         <div class="content">
-          <i class="radio"><input type="radio" value="customerName"></i><span></span>姓名
+          <i class="radio on"><input type="radio" value="customerName"></i>
+          <span>姓名</span>
         </div>
       </div>
       <div class="items">
@@ -160,16 +295,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
       </div>
     </div>
+  </div>
     
     <div class="search-button">
       <input type="text" id="search" placeholder="">
     </div>
     
+   <div class="main-right"></div>
+
 
 </body>
 <script type="text/javascript">
   $(function() {
     var $search = $("#search");
+    var $mainRight = $(".main-right");
     var inputValue,selectValue = "customerName";
     window.onload = function (){
       init();
@@ -178,11 +317,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     function init(){
       $search.attr('placeholder', '请输入姓名');
       $(".radio").on("click", function() {
-          selectValue = $(this).find('input').val();
+            selectValue = $(this).find('input').val();
+
             var $placeholderContent = $(this).siblings('span').text();
             console.log($placeholderContent);
             $search.attr('placeholder', "请输入" + $placeholderContent);
         });
+      $(".main-right").on('click', '.details', function(event) {
+        $(".other").show();
+      });
     }
     function getData(){
       $search.on('input', function(event) {
@@ -219,6 +362,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
       })
       .done(function(data) {
+        $search.val("");
         processData(data);
       })
       .fail(function(e) {
@@ -231,7 +375,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     }
     function processData(data) {
         console.log(data);
-        
+        $mainRight.text("");
+        for (var i = 0; i < data.length; i++) {
+          var $data = createData(data[i]);
+          $mainRight.append($data);
+        }
+    }
+    function createData(res) {
+      var $div = $("<div class='orderData'><button class='details'>查看更多<i class='iconfont icon-icon'></i></button><div class='order-img'></div><div class='order-detail'><div class='roomType'><span class='room1'>标准间("+(res.roomType + "" + res.roomNumber)+"号)</span></div><div class='roomNumber'><span class='price'><i class='triangle2'></i><span class='room2'>￥"+(res.totalMoney)+"</span><i class='circle'></i></span></div><div class='customerName'><span>入住者:</span><span class='room3'>"+(res.customerName)+"</span></div><div class='other'><span class='orderStatus room4'>"+(res.orderStatus)+"</span><span>|</span><span class='checkInTime room5'>"+(res.checkInTime)+"</span><span>至</span><span class='checkOutTime room6'>"+(res.checkOutTime)+"</span><span>|</span><span class='room7'>"+(res.customerPhoneNumber)+"</span></div></div><div class='space'></div></div>");
+      return $div;
     }
   });
   $(function (){
