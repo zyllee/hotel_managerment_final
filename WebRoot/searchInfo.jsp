@@ -248,8 +248,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       width: 30px;
       background: purple;
     }
+    .errorImg {
+      width: 200px;
+      height: 200px;
+      background: url('img/nosearch.png') no-repeat 0 0;
+      background-size: 100% 100%;
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      color: white;
+      margin-left: -100px;
+      margin-top: -100px;
+    }
   </style>
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_956203_4587c5y6xnk.css">
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_956203_k7werhx5yha.css">
     <script type="text/javascript" src="js/jquery.js"></script>
 </head>
 
@@ -319,7 +332,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     
    <div class="main-right"></div>
-
+    <div class="errorImg"></div>
 
 </body>
 <script type="text/javascript">
@@ -386,11 +399,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
       })
       .done(function(data) {
+        $(".errorImg").hide();
+        if(data.length == 0 ) {
+          processError();
+          return;
+        }
         processData(data);
       })
       .fail(function(e) {
         console.log(e.status);
       })
+    }
+    function processError(){
+      $(".main-right").text("");
+      $(".errorImg").show();
     }
     function changeDate(inputValue){
       var date = inputValue.split('-');
