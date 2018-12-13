@@ -65,6 +65,10 @@ public class SearchByTime extends HttpServlet {
 					String roomType = rs.getString("roomType");
 					String roomNumber = rs.getString("roomNumber");
 					String price = rs.getString("price");
+<<<<<<< HEAD
+=======
+//					Map<String,String> e = new HashMap();
+>>>>>>> wh
 					Map e = new HashMap();
 					e.put("roomType", roomType);
 					e.put("roomNumber",roomNumber);
