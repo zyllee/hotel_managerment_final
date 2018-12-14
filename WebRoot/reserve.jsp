@@ -41,17 +41,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       
       <h4>个人信息</h4>
       <div class="line"></div>
-      身份证号<input type = "text" name = "customerIDCard" class="box"><br>
-      姓名<input type = "text" name = "customerName" class="box name">
-      性别 &nbsp; 男<input type = "radio" name = "customerGender" value = "男" checked>  
-           女<input type = "radio" name = "customerGender" value = "女"><br>
-      电话号码<input type="text" name="customerPhoneNumber" class="box"><br>
-      备注<input type = "text" name = "remarks" class="box bz"><br>
-      <div>
-        <input type = "reset" value = "重置" class="sure">
-        <input type = "button" value = "提交" id="info" class="sure">
-      </div>
-      
+      <form>
+          身份证号<input type = "text" name = "customerIDCard" class="box"><br>
+          姓名<input type = "text" name = "customerName" class="box name">
+          性别 &nbsp; 男<input type = "radio" name = "customerGender" value = "男" checked>  
+               女<input type = "radio" name = "customerGender" value = "女"><br>
+          电话号码<input type="text" name="customerPhoneNumber" class="box"><br>
+          备注<input type = "text" name = "remarks" class="box bz"><br>
+          <div>
+            <input type = "reset" value = "重置" class="sure">
+            <input type = "button" value = "提交" id="info" class="sure">
+          </div>
+      </form>
     </div>
 
     <div class="content content2">
@@ -126,23 +127,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     				success:function(data){
 
     					// console.log(data);
-    				    price = data[0].price;
-                        roomNumber =data[0].roomNumber;
-                        console.log(roomNumber);
-                        console.log(price);
-
-
-                
-                    },
-                    error:function(e){
-                        console.log(e);
-
+    				    // price = data[0].price;
+            //             roomNumber =data[0].roomNumber;
+            //             console.log(roomNumber);
+            //             console.log(price);
                         $.each(data,function(index,ele){
                             var empty = $emptyRoom(index,ele);
                             $(".emptyRoomBox").append(empty);
                         });
-
-
+                
                     },
                     error:function(e){
                         console.log(e);
