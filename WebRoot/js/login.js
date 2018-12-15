@@ -7,6 +7,7 @@ $(function() {
   $('input[type="submit"]').click(function() {
     var username = $("#username").val();
     var password = $("#password").val();
+    if(username == "" || password == "") {return;}
     $('.login').addClass('test');
     setTimeout(function() {
       $('.login').addClass('testtwo');
