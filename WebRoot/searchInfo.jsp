@@ -88,10 +88,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     }
     
     .search-button{
-      width: 500px;
+      width: 300px;
       height: 25px;
       background: white;
-      border-radius: 25px;
+      /* border-radius: 25px; */
       left: 50%;
       top: 2%;
       transform: translate(-50%,0%);
@@ -104,7 +104,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       height: 100%;
       outline: none;
       border: none;
-      border-radius: 50px;
       font-size: 20px;
       margin: 0 auto;
       display: block;
@@ -127,11 +126,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       height: 120px;
       position: relative;
     }
-    .main-right .orderData:nth-child(odd) {
-    }
-    .main-right .orderData:not(:first-child) {
-    }
-
+   
     .orderData .order-img {
       width: 18%;
       height: 75%;
@@ -139,7 +134,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       background-size: cover;
       display: block;
       float: left;
-      border-radius: 3px;
+      border-radius: 5px;
       position: relative;
     }
 
@@ -147,16 +142,127 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       width: 75%;
       height: 100%;
       float: left;
+      margin-left: 10px;
     }
     .space {
       width: 100%;
       height: 1px;
-      background: purple;
+      background: #039;
       position: absolute;
-      bottom: 14px;
+      bottom: 10px;
       left: 0;
     }
+    .roomNumber span,.customerName span,.customerPhoneNumber span{
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .order-detail i {
+      color: purple;
+    }
+    .roomType span {
+      font-size: 18px;
+      font-weight: bold;
+      display: block;
+      margin-top: -8px;
+      margin-bottom: 5px;
+    }
+
+
+    .order-detail div:not(:last-child) {
+      border-bottom: .3px solid rgba(0, 0, 0, .1);
+    }
+    .price {
+      display:block;
+      width: 75px;
+      height: 30px;
+      margin-left: 15px;
+      background: rgba(128, 0, 128, .8);
+      position: relative;
+      margin-bottom: 5px;
+    }
+    .triangle2 {
+      width: 0;
+      height: 0;
+      border-width: 15px;
+      border-style: solid;
+      border-color: transparent rgba(128, 0, 128, .8) transparent transparent;
+      position: absolute;
+      top: 0;
+      left: -30px;
+    }
+    .price span {
+      position: absolute;
+      right: 5px;
+      top: 0;
+      color: white;
+      line-height: 30px;
+      text-align: center;
+    }
+    .price .circle {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+      position: absolute; 
+      top: 11px;
+      left: 0;
+    }
+    .orderData .details {
+      position: absolute;
+      right: 0;
+      bottom: 12px;
+      width: 90px;
+      height: 40px;
+      background: #E0E1E3;
+      outline: none;
+      border: none;
+      border-radius: 5px;
+      text-align: center;
+      font-weight: bold;
+      color: purple;
+      cursor: pointer;
+      font-size: 14px;
+      transition: .5s;
+    }
+    .orderData .details:hover {
+      background: black;
+      color: white;
+    }
+    .icon-icon {
+      font-size: 14px!important;
+    }
+    .other {
+      display: none;
+    }
+    .search-icon {
+      position: absolute;
+      top: 4.5px;
+      right: 5px;
+      color: white;
+    }
+    .enterSearch {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 30px;
+      background: purple;
+    }
+    .errorImg {
+      width: 200px;
+      height: 200px;
+      background: url('img/nosearch.png') no-repeat 0 0;
+      background-size: 100% 100%;
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      color: white;
+      margin-left: -100px;
+      margin-top: -100px;
+    }
   </style>
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_956203_k7werhx5yha.css">
     <script type="text/javascript" src="js/jquery.js"></script>
 </head>
 
@@ -168,7 +274,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <span class="triangle"></span>
         <span class="items-word">姓名</span>
         <div class="content">
-          <i class="radio"><input type="radio" value="customerName"></i>
+          <i class="radio on"><input type="radio" value="customerName"></i>
           <span>姓名</span>
         </div>
       </div>
@@ -220,44 +326,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     <div class="search-button">
       <input type="text" id="search" placeholder="">
+      <div class="enterSearch">
+        <i class="iconfont icon-sousuo2 search-icon"></i>
+      </div>
     </div>
     
-   <div class="main-right">
-      <div class="orderData">
-          <div class="order-img"></div>
-          <div class="order-detail">
-            
-          </div>
-          <div class="space"></div>
-      </div>
-      <div class="orderData">
-        <div class="order-img"></div>
-          <div class="order-detail">
-            
-          </div>
-          <div class="space"></div>
-      </div>
-      <div class="orderData">
-        <div class="order-img"></div>
-          <div class="order-detail">
-            
-          </div>
-          <div class="space"></div>
-      </div>
-      <div class="orderData">
-        <div class="order-img"></div>
-          <div class="order-detail">
-            
-          </div>
-          <div class="space"></div>
-      </div>
-   </div>
-
+   <div class="main-right"></div>
+    <div class="errorImg"></div>
 
 </body>
 <script type="text/javascript">
   $(function() {
     var $search = $("#search");
+    var $mainRight = $(".main-right");
     var inputValue,selectValue = "customerName";
     window.onload = function (){
       init();
@@ -266,11 +347,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     function init(){
       $search.attr('placeholder', '请输入姓名');
       $(".radio").on("click", function() {
-          selectValue = $(this).find('input').val();
+            selectValue = $(this).find('input').val();
             var $placeholderContent = $(this).siblings('span').text();
             console.log($placeholderContent);
             $search.attr('placeholder', "请输入" + $placeholderContent);
         });
+      $(".main-right").on('click', '.details', function(event) {
+        $(this).parents('.orderData').find('.other').show();
+      });
+      $(".enterSearch").on('click', function(event) {
+        processGet();
+      });
+      $(document).on('keydown',  function(event) {
+        if(event.keyCode == 13) {
+          $(".enterSearch").trigger('click');
+        }
+      });
     }
     function getData(){
       $search.on('input', function(event) {
@@ -307,11 +399,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
       })
       .done(function(data) {
+        $(".errorImg").hide();
+        if(data.length == 0 ) {
+          processError();
+          return;
+        }
         processData(data);
       })
       .fail(function(e) {
         console.log(e.status);
       })
+    }
+    function processError(){
+      $(".main-right").text("");
+      $(".errorImg").show();
     }
     function changeDate(inputValue){
       var date = inputValue.split('-');
@@ -319,7 +420,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     }
     function processData(data) {
         console.log(data);
-        
+        $mainRight.text("");
+        for (var i = 0; i < data.length; i++) {
+          var $data = createData(data[i]);
+          $mainRight.append($data);
+        }
+    }
+    function createData(res) {
+      var $div = $("<div class='orderData'><button class='details'>查看更多<i class='iconfont icon-icon'></i></button><div class='order-img'></div><div class='order-detail'><div class='roomType'><span class='room1'>标准间("+(res.roomType + "" + res.roomNumber)+"号)</span></div><div class='roomNumber'><span class='price'><i class='triangle2'></i><span class='room2'>￥"+(res.totalMoney)+"</span><i class='circle'></i></span></div><div class='customerName'><span>入住者:</span><span class='room3'>"+(res.customerName)+"</span></div><div class='other'><span class='orderStatus room4'>"+(res.orderStatus)+"</span><span>|</span><span class='checkInTime room5'>"+(res.checkInTime)+"</span><span>至</span><span class='checkOutTime room6'>"+(res.checkOutTime)+"</span><span>|</span><span class='room7'>"+(res.customerPhoneNumber)+"</span></div></div><div class='space'></div></div>");
+      return $div;
     }
   });
   $(function (){
@@ -327,7 +436,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     $radio.on('click', function(event) {
       $(this).addClass('on');
       $(this).parents('.content').siblings().find('i').removeClass('on');
-      $(this).parents('.items').siblings().find('.content i').removeClass('on');      
+      $(this).parents('.items').siblings().find('.content i').removeClass('on');
     });
   });
 </script>

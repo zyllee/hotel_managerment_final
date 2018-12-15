@@ -77,16 +77,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           $(function(){
             var $submitID = $("input[name=leaveSumbit]");
             
-            $(".id1").val("123");
             $submitID.on('click', function() {
               var customerIDCard = $("input[name=customerIDCard]").get(0).value;
-              //改变导航栏状态和content
-              $(".client_nav").removeClass('selected');
-              $(".client_nav_after").css("display","none");
-              $(".finish").addClass('selected');
-              $(".finish_after").css("display","block");
-              $(".content1").css("display","none");
-              $(".content2").css("display","block");
+
               $.ajax({
                   url:'arriveServlet',
                   type:'post',
@@ -95,22 +88,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     'customerIDCard':customerIDCard
                   },
                   success:function(data){
-                      $.each(data,function(index, ele) {
-                        $(".id1").val(ele.customerIDCard);
-                        $(".status").val(ele.orderStatus);
-                        $(".arrive_time").val(ele.checkInTime);
-                        $(".room_num").val(ele.roomNumber);
-                        $(".leave_time").val(ele.checkOutTime);
-                        $(".cost").val(ele.totalMoney);
-                        $(".reserve_time").val(ele.orderTime);
-                        $(".reserve_num").val(ele.orderNumber);
-                      });
-                      
+                    //改变导航栏状态和content
+                    $(".client_nav").removeClass('selected');
+                    $(".client_nav_after").css("display","none");
+                    $(".finish").addClass('selected');
+                    $(".finish_after").css("display","block");
+                    $(".content1").css("display","none");
+                    $(".content2").css("display","block");
+                    //渲染信息
+                    $.each(data,function(index, ele) {
+                      $(".id1").val(ele.customerIDCard);
+                      $(".status").val(ele.orderStatus);
+                      $(".arrive_time").val(ele.checkInTime);
+                      $(".room_num").val(ele.roomNumber);
+                      $(".leave_time").val(ele.checkOutTime);
+                      $(".cost").val(ele.totalMoney);
+                      $(".reserve_time").val(ele.orderTime);
+                      $(".reserve_num").val(ele.orderNumber);
+                    });
                   } 
                 });
             });
-
-
           });   
   </script>
 </html>
