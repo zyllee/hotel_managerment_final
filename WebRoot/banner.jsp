@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
 	    			<div class="content arrive">
 	    				<i class="iconfont icon-jiantou"></i>
-	    				<span>订房</span>
+	    				<span>入住</span>
 		    		</div>
 					<div class="content timeExtension">
 						<i class="iconfont icon-loading2-copy"></i>
