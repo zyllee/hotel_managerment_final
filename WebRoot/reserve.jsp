@@ -42,11 +42,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <h4>个人信息</h4>
       <div class="line"></div>
       <form>
-          身份证号<input type = "text" name = "customerIDCard" class="box"><br>
+          身份证号<input maxlength="18" minlength="18" type = "text" name = "customerIDCard" class="box"><br>
           姓名<input type = "text" name = "customerName" class="box name">
           性别 &nbsp; 男<input type = "radio" name = "customerGender" value = "男" checked>  
                女<input type = "radio" name = "customerGender" value = "女"><br>
-          电话号码<input type="text" name="customerPhoneNumber" class="box"><br>
+          电话号码<input maxlength="11" minlength="11" type="text" name="customerPhoneNumber" class="box"><br>
           备注<input type = "text" name = "remarks" class="box bz"><br>
           <div>
             <input type = "reset" value = "重置" class="sure">
@@ -125,24 +125,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         'checkOutTime':checkOutDate
     				},
     				success:function(data){
-
-    					// console.log(data);
-    				    // price = data[0].price;
-            //             roomNumber =data[0].roomNumber;
-            //             console.log(roomNumber);
-            //             console.log(price);
                         $.each(data,function(index,ele){
                             var empty = $emptyRoom(index,ele);
                             $(".emptyRoomBox").append(empty);
                         });
-                
-                    },
-                    error:function(e){
-                        console.log(e);
-
-                    }
-    			});
+                        },
+                        error:function(e){
+                            console.log(e);
+                        }
+        		});
     		});
+            //当用户选择房间后的操作
+            $(".emptyRoomBox").on('click', 'input[name=emptyRoom]', function(event) {
+                console.log($(this));
+                roomNumber = $(this).siblings('span.roomNumber').text(),
+                price = $(this).siblings('span.price').text(),
+                roomType = $(this).siblings('span.roomType').text();
+
+            });
+
             //提交个人数据插入表格
             $submitInfo.on('click', function() {
                 customerIDCard = $("input[name=customerIDCard]").val();//身份证号
@@ -157,17 +158,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 customerName = $("input[name=customerName]").val();//姓名
                 customerPhoneNumber = $("input[name=customerPhoneNumber]").val();//电话号码
                 remarks = $("input[name=remarks]").val();//备注
-                var emptyCheckBox = $("input[name=emptyRoom]");//空房间
-                var emptyText;
-                for(var i=0; i<emptyCheckBox.length; i++){
-                    if(emptyCheckBox[i].checked == true){
-                        emptyText = emptyCheckBox.eq(i).val();
-                    }
-                }
-                var arr = emptyText.split(" ");
-                roomNumber = arr[1];
-                price = arr[5];
-                roomType = arr[6];
                 $.ajax({
                     url: 'checkinServlet',
                     type: 'post',
@@ -200,8 +190,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 });
     	    });
             function $emptyRoom(index,ele){
-                var $empty = $("<input type=\"radio\" name=\"emptyRoom\" "+
-        "value=\" "+(ele.roomNumber)+" "+(ele.price)+" "+(ele.roomType)+"\">"+ele.roomNumber+ele.roomType+" 价格："+ele.price+"元"+"<br><br>");
+                var $empty = $("<div class=\"room\"><input type=\"radio\" name=\"emptyRoom\" ><span class=\"roomNumber\">"+(ele.roomNumber)+"</span><span class=\"roomType\">"+(ele.roomType)+"</span><span>价格:</span><span class=\"price\">"+(ele.price)+"</span><span>元</span></div>");
                 return $empty;  
             }
         });
