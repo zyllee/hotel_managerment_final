@@ -1,15 +1,6 @@
---修改表
---向room房间里面添加url
-alter table room 
-add roomUrl varchar(50)
-select * from room
-update room set roomUrl = 'img/single1' where roomNumber = '1001'
-update room set roomUrl = 'img/single2' where roomNumber = '1002'
-update room set roomUrl = 'img/double1' where roomNumber = '1003'
-update room set roomUrl = 'img/double2' where roomNumber = '1002'
 --预订
 --根据入住和退房时间查询空房间
-select room.roomType,roomTypeAndPrice.price,room.roomNumber,roomUrl
+select room.roomType,roomTypeAndPrice.price,room.roomNumber
 	from room inner join roomTypeAndPrice
 	on room.roomType = roomTypeAndPrice.roomType
 	where roomNumber not in
@@ -21,9 +12,13 @@ insert orders values('预订中','1                 ','1002','2018-12-1','2018-12-3
 delete from orders
 delete from customers
 delete from timeExtension
+delete from room
+delete from roomTypeAndPrice
 select * from customers
 select * from orders
 select * from timeExtension
+select * from room
+select * from roomTypeAndPrice
 --入住
 update orders
 	set orderStatus = '已入住'

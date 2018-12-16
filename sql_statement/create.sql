@@ -161,7 +161,6 @@ on orders.customerIDCard = customers.customerIDCard
 --select * from timeExtensionOrdersView
 
 --创建订单视图
-drop view orderview
 create view orderview
 as
 select top 100 percent
@@ -174,8 +173,7 @@ select top 100 percent
     orders.checkInTime,
     orders.checkOutTime,
     customers.customerPhoneNumber,
-    orders.totalMoney,
-    room.roomUrl
+    orders.totalMoney
 from orders inner join customers
 on orders.customerIDCard = customers.customerIDCard
 inner join room
@@ -187,12 +185,16 @@ order by orders.orderNumber desc
 select * from orderview
 
 --存储过程（解决续住问题）
+USE [hotel_db]
+GO
+/****** Object:  StoredProcedure [dbo].[getPrice]    Script Date: 12/16/2018 23:44:40 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE getPrice(
+ALTER PROCEDURE [dbo].[getPrice](
+	@customerIDCard char(18),
 	@roomNumber int,
 	@addDay int,
 	@addMoney int output,
@@ -206,7 +208,7 @@ BEGIN
 	--获取订单号
 	select @orderNumber = orders.orderNumber 
 	from orders 
-	where roomNumber = @roomNumber and orderStatus != '已退房'
+	where roomNumber = @roomNumber and orderStatus != '已退房' and customerIDCard = @customerIDCard
 	--获取该类型房间的价格
 	select @price = roomTypeAndPrice.price 
 	from roomTypeAndPrice inner join room on roomTypeAndPrice.roomType = room.roomType
@@ -218,14 +220,14 @@ BEGIN
 	--计算新到期时间
 	set @newExpiryTime = DATEADD(DAY,@addDay,@oldExpiryTime)
 END
-GO
---存储过程（解决续住问题）
-declare @addMoney int,@orderNumber int,@oldExpiryTime date,@newExpiryTime date
-exec dbo.getPrice '1002',3,@addMoney output,@orderNumber output,@oldExpiryTime output,@newExpiryTime output
+
+--测试
+declare @customerIDCard char(18),@addMoney int,@orderNumber int,@oldExpiryTime date,@newExpiryTime date
+exec dbo.getPrice '511023199810101871','1001',1,@addMoney output,@orderNumber output,@oldExpiryTime output,@newExpiryTime output
 select @addMoney as addMoney,@orderNumber as orderNumber,@oldExpiryTime as oldExpiryTime,@newExpiryTime as newExpiryTime
 
 
-存储过程（解决订单视图查询选择）
+--存储过程（解决订单视图查询选择）
 USE [hotel_db]
 GO
 /****** Object:  StoredProcedure [dbo].[showView]    Script Date: 12/06/2018 21:41:54 ******/
@@ -246,8 +248,6 @@ BEGIN
 	else if @Type = 'roomType'
 		select * from orderview where roomType like '%'+@para+'%'
 	else if @Type = 'orderTime'
-		select * from orderview where orderTime like '%'+@para+'%'
-	else if @Type = 'checkInTime'
 		select * from orderview where checkInTime like '%'+@para+'%'
 	else if @Type = 'checkOutTime'
 		select * from orderview where checkOutTime like '%'+@para+'%'
@@ -255,10 +255,10 @@ BEGIN
 		select * from orderview where customerPhoneNumber like '%'+@para+'%'
 	else if @Type = 'totalMoney'
 		select * from orderview where totalMoney like '%'+@para+'%'
-	END
+END
 --测试存储过程（解决视图选择问题）
 declare @Type varchar(25),@para varchar(25)
-set @Type = ''
-set @para = '肖'
+set @Type = 'totalMoney'
+set @para = '3'
 exec ChooseSearchInfo @para,@Type
 

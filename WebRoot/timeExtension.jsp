@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <div class="line"></div>
       续费房间号<input type="text" name="roomNumber" class="box ex_num"><br>
       续费天数<input type="text" name="addDay" class="box ex_days"><br>
-        
+       顾客身份证号<input type="text" name="customerIDCard" class="box ex_days"><br>
       <div class="content3">
           <h4>续费之后</h4>
           <div class="line"></div>
@@ -89,18 +89,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             var oldExpiryTime;
             var newExpiryTime;
             var roomNumber;
+            var customerIDCard;
             //确定按钮
             $getPrice.on('click', function() {
             	var addDay = $("input[name=addDay]").val();
             	roomNumber = $("input[name=roomNumber]").val();
-	            
+	            customerIDCard = $("input[name=customerIDCard]").val();
 	              $.ajax({
 	                  url:'getPriceServlet',
 	                  type:'post',
 	                  dataType:'json',
 	                  data: {
 	                    'addDay':addDay,
-	                    'roomNumber':roomNumber
+	                    'roomNumber':roomNumber,
+	                    'customerIDCard':customerIDCard
 	                  },
 	                  success:function(data){
                           $(".content3").css("display","block");

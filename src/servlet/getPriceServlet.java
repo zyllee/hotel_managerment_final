@@ -39,10 +39,10 @@ public class getPriceServlet extends HttpServlet {
 		String url = "jdbc:sqlserver://localhost:1433;Database=hotel_db";
 		String user = "sa";
 		String pwd = "160510111xyj";
-		
+		String customerIDCard = request.getParameter("customerIDCard");
 		String roomNumber = request.getParameter("roomNumber");
 		String addDay = request.getParameter("addDay");
-		String sql = "declare @addMoney int,@orderNumber int,@oldExpiryTime date,@newExpiryTime date exec dbo.getPrice '"+roomNumber+"',"+addDay+",@addMoney output,@orderNumber output,@oldExpiryTime output,@newExpiryTime output select @addMoney as addMoney,@orderNumber as orderNumber,@oldExpiryTime as oldExpiryTime,@newExpiryTime as newExpiryTime";
+		String sql = "declare @customerIDCard char(18),@addMoney int,@orderNumber int,@oldExpiryTime date,@newExpiryTime date exec dbo.getPrice '"+customerIDCard+"','"+roomNumber+"',"+addDay+",@addMoney output,@orderNumber output,@oldExpiryTime output,@newExpiryTime output select @addMoney as addMoney,@orderNumber as orderNumber,@oldExpiryTime as oldExpiryTime,@newExpiryTime as newExpiryTime";
 		Connection conn = null;
 		try {
 			Class.forName(driverName);
